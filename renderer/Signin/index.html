@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="../Signin//styles.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
     
-    <title>Farm Records</title>
+    <title>SignIn Farmer For Record</title>
 </head>
 <body>
     <main class="main-reg">
         <div class="top">
-            <img src="../asset/logo.png" alt="" height="60px">
+            <a href="../Stock/index.html">
+                <img src="../asset/logo.png" alt="" height="60px">
+            </a>
             
         </div>
 
@@ -89,11 +91,87 @@
 </body>
 <script>
     // Fetch Farmer's Information
+document.addEventListener("DOMContentLoaded", function(){
+    const farmerCodeInput = document.getElementById("farmerCode");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const infoBox = document.getElementById("infoBox");
+    const farmData = document.getElementById("fahm");
+
+    // Preloader
+    const button = document.getElementById('confirmBtn');
+    const originalText = button.textContent;
+    
+    button.addEventListener("click", function(event) {
+        event.preventDefault();  // Prevent the default anchor link behavior
+
+        // Show loading text and disable the button
+        button.classList.add("btn");
+        button.textContent = "Loading...";
+        button.disabled = true;
+
+        // Fake async delay to simulate loading process
+        setTimeout(() => {
+            const farmerCode = farmerCodeInput.value;
+            const farmer = farmersDatabase[farmerCode];
+
+            if (farmer) {
+                // Display farmer data
+                document.getElementById("name").textContent = farmer.name;
+                document.getElementById("phone").textContent = farmer.phone;
+                document.getElementById("bank").textContent = farmer.bank;
+                document.getElementById("account").textContent = farmer.account;
+                document.getElementById("accountName").textContent = farmer.accountName;
+                document.getElementById("customerCode").textContent = farmer.customerCode;
+
+                infoBox.style.display = "flex";
+                farmData.style.display = "flex";
+            } else {
+                // Hide data if no farmer found
+                infoBox.style.display = "none";
+                farmData.style.display = "none";
+            }
+
+            // Reset the button text and enable the button
+            button.textContent = originalText;
+            button.disabled = false;
+        }, 1000);  // 1 second delay for simulation
+    });
+
+    // Farmer database for simulation
+    const farmersDatabase = {
+        "zaf_001": {
+            name: "Isiaka Bolaji",
+            phone: "08023856842",
+            bank: "Opay",
+            account: "8023856842",
+            accountName: "Isiaka Bolaji",
+            customerCode: "zaf_005"
+        }
+    };
+
+    // Auto-fetch data if the input value changes (like a `useEffect` dependency)
+    farmerCodeInput.addEventListener("input", function() {
+        button.textContent = originalText; // Reset button text when user types again
+        button.disabled = false;
+        infoBox.style.display = "none"; // Hide the info box when typing
+        farmData.style.display = "none"; // Hide farm data when typing
+    });
+})
+
+</script>
+<!-- <script>
+    // Fetch Farmer's Information
     document.addEventListener("DOMContentLoaded", function(){
         const farmerCodeInput = document.getElementById("farmerCode");
             const confirmBtn = document.getElementById("confirmBtn");
             const infoBox = document.getElementById("infoBox");
             const farmData = document.getElementById("fahm");
+
+            //preloader
+            const button = document.getElementById('confirmBtn');
+            const originalText = button.textContent;
+            button.textContent = "Loading...";
+            button.disabled = true;
 
             const farmersDatabase = {
                 "zaf_001": {
@@ -120,9 +198,15 @@
 
                     infoBox.style.display = "flex";
                     farmData.style.display = "flex";
+
+                    button.textContent = originalText;
+                    button.disabled = false;
                 } else {
                     infoBox.style.display = "none";
                     farmData.style.display = "none";
+
+                    button.textContent = originalText;
+                    button.disabled = false;
                 }
             }
              
@@ -135,5 +219,5 @@
             // Auto-fetch data if the input value changes (like a `useEffect` dependency)
             farmerCodeInput.addEventListener("input", fetchFarmerData);
     })
-</script>
+</script> -->
 </html>
