@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../Signin//styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+    
+    <title>Farm Records</title>
+</head>
+<body>
+    <main class="main-reg">
+        <div class="top">
+            <img src="../asset/logo.png" alt="" height="60px">
+            
+        </div>
+
+        <div class="form">
+            <div class="top">Farm Records</div>
+
+            <label class="namelab" for=""> 
+                <div class="hd">Farmer’s Code </div>
+                <input class="inp" type="text" name="name" id="farmerCode" value="zaf_001" placeholder="Enter Farmer’s code">
+                <a href="" id="confirmBtn"><button class="btn">confirm</button></a>
+            </label>
+        </div>
+
+        <!-- Farmer Info Box -->
+       <div class="info-box" id="infoBox">
+           <p><strong>Name:</strong> <span id="name">-</span></p>
+           <p><strong>Phone Number:</strong> <span id="phone">-</span></p>
+           <p><strong>Bank Name:</strong> <span id="bank">-</span></p>
+           <p><strong>Account Number:</strong> <span id="account">-</span></p>
+           <p><strong>Account Name:</strong> <span id="accountName">-</span></p>
+           <p><strong>Customer Code:</strong> <span id="customerCode">-</span></p>
+       </div>
+        <div class="fahm" id="fahm">
+
+            <!-- Additional Farm Data Inputs -->
+             <div class="farmtwo">
+            <div class="farm-data" id="farmData">
+                <div class="farm1">
+                    <label for="" class="lb1">
+                        <p>Details</p>
+                        <input type="text" id="details" placeholder="Details">
+                    </label>
+                    <label for="" class="lb2">
+                        <p>Total KG</p>
+                        <input type="number" id="totalKG" placeholder="Total KG">
+                    </label>
+                    <label for="" class="lb3">
+                        <p>Crop</p>
+                        <input type="text" id="crop" placeholder="Crop">
+                    </label>
+                    <label for="" class="lb4">
+                        <p>Price per kg</p>
+                        <input type="number" id="pricePerKG" placeholder="Price per KG">
+                    </label>
+
+                </div>
+                <div class="farm2">
+                    <label for="" class="lb5">
+                        <p>No of Birds</p>
+                        <input type="number" id="numBirds" placeholder="No of Birds">
+                    </label>
+                    <label for="" class="lb6">
+                        <p>Create KG</p>
+                        <input type="number" id="createKG" placeholder="Create KG">
+                    </label>
+                    <label for="" class="lb7">
+                        <p>Actual KG</p>
+                        <input type="text" id="crop" placeholder="Crop">
+                    </label>
+                    <label for="" class="lb8">
+                        <p>Price</p>
+                        <input type="number" id="price" placeholder="Price">
+                    </label>
+                </div>
+               
+            </div>
+            <a href="" style="display: flex; align-self: self-end;"><button class="lstbtn">Create Records</button></a>
+        </div>
+        </div>
+
+
+
+    </main>
+</body>
+<script>
+    // Fetch Farmer's Information
+    document.addEventListener("DOMContentLoaded", function(){
+        const farmerCodeInput = document.getElementById("farmerCode");
+            const confirmBtn = document.getElementById("confirmBtn");
+            const infoBox = document.getElementById("infoBox");
+            const farmData = document.getElementById("fahm");
+
+            const farmersDatabase = {
+                "zaf_001": {
+                    name: "Isiaka Bolaji",
+                    phone: "08023856842",
+                    bank: "Opay",
+                    account: "8023856842",
+                    accountName: "Isiaka Bolaji",
+                    customerCode: "zaf_005"
+                }
+            };
+
+            function fetchFarmerData() {
+                const farmerCode = farmerCodeInput.value;
+                const farmer = farmersDatabase[farmerCode];
+
+                if (farmer) {
+                    document.getElementById("name").textContent = farmer.name;
+                    document.getElementById("phone").textContent = farmer.phone;
+                    document.getElementById("bank").textContent = farmer.bank;
+                    document.getElementById("account").textContent = farmer.account;
+                    document.getElementById("accountName").textContent = farmer.accountName;
+                    document.getElementById("customerCode").textContent = farmer.customerCode;
+
+                    infoBox.style.display = "flex";
+                    farmData.style.display = "flex";
+                } else {
+                    infoBox.style.display = "none";
+                    farmData.style.display = "none";
+                }
+            }
+             
+            //  confirmBtn.addEventListener("click", fetchFarmerData);
+                confirmBtn.addEventListener("click", function(event) {
+                event.preventDefault();  // Prevent the default anchor link behavior
+                fetchFarmerData();
+            });
+
+            // Auto-fetch data if the input value changes (like a `useEffect` dependency)
+            farmerCodeInput.addEventListener("input", fetchFarmerData);
+    })
+</script>
+</html>
