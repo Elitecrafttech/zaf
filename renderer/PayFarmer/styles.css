@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+.main-reg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 50px;
+    background-color: #D2C5C5;
+    gap: 40px;
+}
+.top{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.namelab{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.hd{
+    font-size: 18px;
+    font-weight: bolder;
+}
+.inp{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 10px ;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+    width: 20vw;
+}
+.btn{
+    background-color: #CF7373;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 18px;
+    color: black;
+}
+.info-box { 
+    display: none;
+    flex-direction: column;
+    /* align-items: center; */
+    min-width: 30%;
+    padding: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    background: transparent;
+    gap: 30px;
+}
+.fahm{
+    display: none;
+    flex-direction: column;
+    gap: 40px;
+}
+.farmtwo{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.amt{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 40px;
+}
+.amt p{
+    font-weight: bolder;
+    font-size: 18px;
+}
+.amtdiv{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.amtdiv input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 10px ;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+}
+
+
+
+.allbt{
+    display: flex;
+    align-items: center;
+    align-self: self-end;
+}
+.bt1{
+    border: none;
+    background-color: black;
+    padding: 8px 30px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}

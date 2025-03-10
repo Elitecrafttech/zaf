@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../PayFarmer/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+    
+    <title>Pay Farmer</title>
+</head>
+<body>
+    <main class="main-reg">
+        <div class="top">
+            <a href="../PaymentConfirmation/index.html">
+                <img src="../asset/logo.png" alt="" height="60px">
+            </a>
+            
+        </div>
+
+        <div class="form">
+            <div class="top">Farm Records</div>
+
+            <label class="namelab" for=""> 
+                <div class="hd">Farmer’s Code </div>
+                <input class="inp" type="text" name="name" id="farmerCode" value="zaf_001" placeholder="Enter Farmer’s code">
+                <a href="" id="confirmBtn"><button class="btn">Look Up</button></a>
+            </label>
+        </div>
+
+        <!-- Farmer Info Box -->
+       <div class="info-box" id="infoBox">
+           <p><strong>Name:</strong> <span id="name">-</span></p>
+           <p><strong>Phone Number:</strong> <span id="phone">-</span></p>
+           <p><strong>Bank Name:</strong> <span id="bank">-</span></p>
+           <p><strong>Account Number:</strong> <span id="account">-</span></p>
+           <p><strong>Account Name:</strong> <span id="accountName">-</span></p>
+           <p><strong>Customer Code:</strong> <span id="customerCode">-</span></p>
+       </div>
+        <div class="fahm" id="fahm">
+
+            <!-- Additional Farm Data Inputs -->
+        <div class="farmtwo">
+            <label for="" class="amt">
+                <p>Amount to be paid</p>
+                <div class="amtdiv">
+                    <input type="text" name="" id="amountInput" value="500,000.00" placeholder="Enter Amount">
+                    <p>₦</p>
+                </div>
+                
+            </label>
+            <div class="allbt">
+                <a href="">
+                    <button class="bt1">continue</button>
+                </a>
+            </div>
+        </div>
+        </div>
+
+
+
+    </main>
+</body>
+<script>
+    // Fetch Farmer's Information
+document.addEventListener("DOMContentLoaded", function(){
+    const farmerCodeInput = document.getElementById("farmerCode");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const infoBox = document.getElementById("infoBox");
+    const farmData = document.getElementById("fahm");
+    const amountInput = document.getElementById('amountInput');
+
+    // Preloader
+    const button = document.getElementById('confirmBtn');
+    const originalText = button.textContent;
+    
+    button.addEventListener("click", function(event) {
+        event.preventDefault();  // Prevent the default anchor link behavior
+
+        // Show loading text and disable the button
+        button.classList.add("btn");
+        button.textContent = "Loading...";
+        button.disabled = true;
+
+        // Fake async delay to simulate loading process
+        setTimeout(() => {
+            const farmerCode = farmerCodeInput.value;
+            const farmer = farmersDatabase[farmerCode];
+
+            if (farmer) {
+                // Display farmer data
+                document.getElementById("name").textContent = farmer.name;
+                document.getElementById("phone").textContent = farmer.phone;
+                document.getElementById("bank").textContent = farmer.bank;
+                document.getElementById("account").textContent = farmer.account;
+                document.getElementById("accountName").textContent = farmer.accountName;
+                document.getElementById("customerCode").textContent = farmer.customerCode;
+
+                infoBox.style.display = "flex";
+                farmData.style.display = "flex";
+            } else {
+                // Hide data if no farmer found
+                infoBox.style.display = "none";
+                farmData.style.display = "none";
+            }
+
+            // Reset the button text and enable the button
+            button.textContent = originalText;
+            button.disabled = false;
+        }, 1000);  // 1 second delay for simulation
+    });
+
+    // Farmer database for simulation
+    const farmersDatabase = {
+        "zaf_001": {
+            name: "Isiaka Bolaji",
+            phone: "08023856842",
+            bank: "Opay",
+            account: "8023856842",
+            accountName: "Isiaka Bolaji",
+            customerCode: "zaf_005"
+        }
+    };
+
+    // Auto-fetch data if the input value changes (like a `useEffect` dependency)
+    farmerCodeInput.addEventListener("input", function() {
+        button.textContent = originalText; // Reset button text when user types again
+        button.disabled = false;
+        infoBox.style.display = "none"; // Hide the info box when typing
+        farmData.style.display = "none"; // Hide farm data when typing
+    });
+
+    amountInput.addEventListener('input', function(e) {
+            let value = amountInput.value.replace(/[^0-9]/g, ''); // numeric characters only
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Add commas for thousands
+            amountInput.value = value; // Update the input value
+        });
+
+        // Get the numeric value without commas for submission or processing
+        function getAmount() {
+            let rawValue = amountInput.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+            return parseInt(rawValue, 10); // Return the numeric value
+        }
+
+        const continueButton = document.querySelector('.bt1');
+        continueButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log("Amount to be paid:", getAmount());
+            window.location.href = '../PaymentConfirmation/index.html';
+        }, { once: true });
+
+
+})
+
+</script>
+</html>

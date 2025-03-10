@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: #333;
+}
+.main-index{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    gap: 50px;
+}
+.logo{
+    padding-left: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.logo p{
+    font-weight: bolder;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+.main-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 100px;
+}
+.allbt{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.bt1{
+    border: none;
+    background-color: black;
+    padding: 8px 30px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+.bt2{
+    border: none;
+    background-color: #CF7373;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
+.alltb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+    border-spacing: 5px; 
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.alltb th {
+    background-color: #39693b; 
+    color: white;
+    /* padding: 10px;  */
+    text-align: left;
+    border-radius: 5px;
+}
+.alltb td {
+    background-color: white;
+    /* padding: 10px;  */
+    border-radius: 5px; 
+    text-align: left; 
+}
+
+.alltb tr:hover {
+    cursor: pointer; 
+}
+
+.alltb th, .alltb td {
+    border: 1px solid #ddd;
+    border-radius: 5px; 
+}
