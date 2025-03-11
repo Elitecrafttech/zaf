@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.all{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-color: #d2c5c5;
+    padding: 25px;
+}
+.sec{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.boy{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.logo{
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chick{
+    border: 2px solid black;
+    width: 220px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;   
+}
+.put{
+    border: 2px solid black;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+}
+.putin{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.pot{
+    display: flex;
+    align-items: center;
+    gap: 72px;
+}
+.pot1{
+    display: flex;
+    align-items: center;
+    gap: 42px;
+}
+.pot2{
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+.pot3{
+    display: flex;
+    align-items: center;
+    gap: 46px;
+}
+.pot5{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.sales{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px;
+}
+button{
+    background-color: black;
+    color: white;
+    width: 140px;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: x-large;
+}
+.but{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.creat{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+}
