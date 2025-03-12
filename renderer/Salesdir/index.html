@@ -13,46 +13,59 @@
             <h2>Sales</h2>
         </div>
         <div class="boy">
-            <h3 class="creat">Create a new sales</h3>
+            <a href="../SalesVerificationdir/index.html"><h3 class="creat">Create a new sales</h3></a>
             <div>
-                <form class="sales">
+                <form  class="sales">
                     <div class="pot5">
                         <h4>Sales Type</h4>
-                        <select class="chick" name="" id="">
+                        <select class="salesType" name="" id="">
                             <option value="">Whole Chicken</option>
-                            <option value="">Rejected Laps</option>
-                            <option value="">Egg</option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            <option value="">Breeder fillet</option>
+                            <option value="">Backbone</option>
+                            <option value="">Chicken lap</option>
+                            <option value="">Specil wing</option>
+                            <option value="">Wing</option>
+                            <option value="">Skin</option>
+                            <option value="">Off cut</option>
+                            <option value="">Breast fillet</option>
+                            <option value="">Rejected laps</option>
+                            <option value="">Thigh bone</option>
+                            <option value="">Thigh fillet</option>
+                            <option value="">Special fillet</option>
+                            <option value="">Breast strip</option>
+                            <option value="">Hot wing</option>
+                            <option value="">Bum bum</option>
+                            <option value="">Neck</option>
+                            <option value="">Head and feet</option>
+                            <option value="">Liver</option>
+                            <option value="">Gizzard</option>
+                            <option value="">Rejected wings</option>
+                            <option value="">Fat</option>
+                            <option value="">Drum stick</option>
                         </select>
                     </div>
                     <div class="pot">
                         <h4>Unit</h4>
-                        <input class="put" type="text" >
+                        <input class="unit" type="text" >
                     </div>
                     <div class="pot1">
                         <h4>Quantity</h4>
                         <div class="putin">
-                            <input class="put" type="text" name="" value="" placeholder="">
+                            <input class="quantity" type="text" name="" value="" placeholder="">
                             <h4>KG</h4>
                         </div>
                     </div>
                     <div class="pot2">
                         <h4>Rate</h4>
                         <div class="putin">
-                            <input class="put" type="text" name="" value="" placeholder="">
+                            <input class="rate" type="text" name="" value="" placeholder="">
                             <h4>N</h4>
                         </div>
                     </div>
                     <div class="pot3">
                         <h4>Amount</h4>
                         <div class="putin">
-                            <input class="put" type="text">
+                            <input class="amount" type="text">
                             <h4>N</h4>
                         </div>
                     </div>
@@ -62,6 +75,41 @@
         <div class="but">
             <a href="../SalesRecorddir/index.html"><button>Create</button></a>
         </div>
+        <script>
+            
+            async function createSales(){
+                const salesType = document.querySelector('.salesType').value;
+                const unit = document.querySelector('.unit').value;
+                const quantity = document.querySelector('.quantity').value;
+                const rate = document.querySelector('.rate').value;
+                const amount = document.querySelector('.amount').value;
+
+                const data = {
+                    salesType,
+                    unit,
+                    quantity,
+                    rate,
+                    amount
+                };
+            
+                    try {
+                        const response = await fetch("https://zaf-farm.onrender.com/record-sale", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    if(!response.ok){
+                        // const data = await response.json()
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                        // console.log(data)
+                    }
+                    } catch (error) {
+                        console.log(error)
+                    }
+            }    
+        </script>
     </div>
 </body>
 </html>

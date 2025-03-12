@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../SalesVerificationdir/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <title>Verification Page</title>
+</head>
+<body>
+    <div class="all">
+        <img src="../asset/logo.png" alt="">
+        <a href="../SalesLogindir/index.html"><h1>VERIFICATION PAGE</h1></a>
+        <form id="otpForm">
+            <div class="hot">
+                <h2>EMAIL</h2>
+                <input class="email" type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="fat">
+                <h2>OTP</h2>
+                <input class="otp" type="text" name="otp" placeholder="OTP" required>
+            </div>
+            <button type="submit" class="btn1">Submit</button>
+        </form>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+
+        const savedEmail = localStorage.getItem('mail');
+        if(savedEmail){
+            document.querySelector('.email').value = savedEmail;
+        }
+
+        const email = document.querySelector('.email').value.trim();
+        
+        const loginButton = document.querySelector('.btn1');
+
+
+        document.getElementById("otpForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent form from refreshing
+            loginButton.textContent = "Loading...";
+            loginButton.disabled = true;
+            loginButton.style.cursor = "not-allowed"
+
+            // get email from local storage
+            const otp = document.querySelector('.otp').value.trim();
+
+            if (!email || !otp) {
+                loginButton.textContent = "Login";
+                loginButton.disabled = false;
+                loginButton.style.cursor = "pointer"
+                Toastify({
+                    text: "Please enter both email and OTP.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "left",
+                    style: { background: "linear-gradient(to right, #ff6b6b, #c23616)" }
+                }).showToast();
+                return;
+            }
+
+            try {
+                const response = await fetch("https://zaf-farm.onrender.com/verify-otp", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, otp })
+                });
+
+                if (response.ok) {
+                    loginButton.textContent = "Login";
+                    loginButton.disabled = false;
+                    loginButton.style.cursor = "pointer"
+
+                    // grab token 
+                    const data = await response.json();
+                    localStorage.setItem('token', data.token);
+                    Toastify({
+                        text: `${data.message}`,
+                        duration: 3000,
+                        gravity: "top",
+                        position: "center",
+                        style: { background: "linear-gradient(to right, #00b09b, #96c93d)" }
+                    }).showToast();
+
+                    setTimeout(() => {
+                        window.location.href = "../Salesdir/index.html"; // Redirect to create new sales
+                    }, 2000);
+                } else {
+                    loginButton.textContent = "Login";
+                    loginButton.disabled = false;
+                    loginButton.style.cursor = "pointer"
+                    const data = await response.json();
+                    Toastify({
+                        text: `${data.error}`,
+                        duration: 10000,
+                        gravity: "top",
+                        position: "center",
+                        style: { background: "linear-gradient(to right, #ff6b6b, #c23616)" }
+                    }).showToast();
+                }
+            } catch (error) {
+                loginButton.textContent = "Login";
+                loginButton.disabled = false;
+                loginButton.style.cursor = "pointer";
+                
+                console.error("Error:", error);
+                Toastify({
+                    text: "Network error. Please try again later.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "left",
+                    style: { background: "linear-gradient(to right, #ff6b6b, #c23616)" }
+                }).showToast();
+            }
+        });
+    </script>
+</body>
+</html>

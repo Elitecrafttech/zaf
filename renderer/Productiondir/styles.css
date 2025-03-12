@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button{
+    border: 3px solid black;
+    width: 250px;
+    padding: 30px;
+    border-radius: 7px;
+    font-size: x-large;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover{
+    scale: 1.1;
+    background-color: #f5bebe;
+    transition: transform 0.1s ease, background-color 0.1s ease-in-out;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+}
+.all{
+    width: 90%;
+    height: 90vh;
+    background-color:#d2c5c5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    gap: 120px;
+    border: 3px solid black;
+    border-radius: 7px;
+}
+.but{
+    display: flex;
+    gap: 350px;
+}

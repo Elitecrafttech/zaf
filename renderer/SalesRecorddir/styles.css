@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.me{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.all{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 60px;
+    padding: 35px 0px;
+    background-color:#d2c5c5;
+}
+
+.record{
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+.logo{
+    width: 70px;
+    align-items: center;
+    justify-content: center;
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pot5{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.chick{
+    border: 2px solid black;
+    width: 220px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;   
+}
+button{
+    background-color: black;
+    color: white;
+    width: 140px;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    font-size: x-large;
+}
+.but{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.me{
+    display: flex;
+    align-items: center;
+    gap: 120px;
+    border: 2px solid black;
+    flex-direction: row;
+    padding: 5px 20px;
+}
+.go{
+    display: flex;
+    gap: 120px;
+}
+table{
+    border: 2px solid black; 
+}

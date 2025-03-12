@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.email{
+    width: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+.otp{
+    width: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+button{
+    padding: 10px 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    width: 200px;
+}
+.hot{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.fat{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 20px;
+}
+.all{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 0px;
+}
+img{
+    width: 90px;
+}

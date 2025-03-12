@@ -30,19 +30,45 @@
     align-items: center;
     justify-content: center;
 }
-.chick{
+.salesType{
     border: 2px solid black;
     width: 220px;
     height: 35px;
     border-radius: 5px;
-    outline: none;   
+    outline: none;  
+    padding: 0px 5px; 
 }
-.put{
+.unit{
     border: 2px solid black;
     width: 100px;
     height: 35px;
     border-radius: 5px;
     outline: none;
+    padding: 0px 5px;
+}
+.quantity{
+    border: 2px solid black;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+    padding: 0px 5px;
+}
+.rate{
+    border: 2px solid black;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+    padding: 0px 5px;
+}
+.amount{
+    border: 2px solid black;
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+    padding: 0px 5px;
 }
 .putin{
     display: flex;
