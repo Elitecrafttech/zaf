@@ -3,12 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../SalesRecorddir/styles.css">
     <title>Sales Record</title>
 </head>
 <body>
-    <div>
-        <h1>Sales Day Record</h1>
+    <div class="all">
+        <div class="all">
+            <div class="head">
+                 <img class="logo"  src="../asset/logo.png" alt="">
+             </div>
+            <a href="../Salesdir/index.html"><h1>Sales Day Record</h1></a>
+            <h3>Welcome to the sales record section, kindly select the part of the sales you want to track in order to sell full details.</h3>
+            <div class="record">
+                <div class="pot5">
+                    <h3>Sales Type</h3>
+                    <select class="chick" name="" id="">
+                        <option value="">Whole Chicken</option>
+                        <option value="">Rejected Laps</option>
+                        <option value="">Egg</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+                <div>
+                    <div class="pot5">
+                        <h3>Month</h3>
+                        <select class="chick" name="" id="">
+                            <option value="">Jan</option>
+                            <option value="">Feb</option>
+                            <option value="">Mar</option>
+                            <option value="">Apr</option>
+                            <option value="">May</option>
+                            <option value="">Jun</option>
+                            <option value="">Jul</option>
+                            <option value="">Aug</option>
+                            <option value="">Sep</option>
+                            <option value="">Oct</option>
+                            <option value="">Nov</option>
+                            <option value="">Dec</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="but">
+            <a href="../SalesRecorddir/index.htm"><button>Get Data</button></a>
+        </div>
+        <div>
+            <table>
+                <tr class="me">
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Ref</th>
+                    <th>Unit/KG</th>
+                    <th>Amount</th>
+                </tr>
+                <tr class="go">
+                    <th>12/01/05</th>
+                    <th>idowu</th>
+                    <th>55</th>
+                    <th>5</th>
+                    <th>17.000.00</th>
+                </tr>
+            </table>
+        </div>
     </div>
-    
 </body>
+<script>
+    const [data, setDate] = useState();
+    const [name, setName] = useState();
+    const [ref, setRef] = useState();
+    const [ amount, setAmount] = useState();
+    const [unit, setUnit] = useState()
+    
+</script>
 </html>
