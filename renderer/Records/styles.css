@@ -52,29 +52,39 @@ a{
     font-size: 13px;
     font-weight: bold;
 }
+
 .alltb {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
-    border-spacing: 5px; 
+    display: block; /* Make the table block-level for scrolling */
+    max-width: 100%; /* Ensure it doesn't overflow the viewport */
+    overflow-x: auto; /* Horizontal scroll */
+    border-spacing: 5px;
     background-color: #f4f4f4;
     font-family: Arial, sans-serif;
 }
 
+.alltb table {
+    width: 100%; /* Ensure the table takes up the full container width */
+    border-collapse: collapse; /* Remove unnecessary space between cells */
+}
+
 .alltb th {
-    background-color: #39693b; 
+    background-color: #39693b;
     color: white;
-    padding: 10px; 
+    padding: 10px;
     text-align: left;
     border-radius: 5px;
+    position: sticky;
+    top: 0; /* Make the header sticky at the top */
+    z-index: 1; /* Ensure it stays on top when scrolling */
 }
+
 .alltb td {
     background-color: white;
-    padding: 10px; 
-    border-radius: 5px; 
-    text-align: left; 
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
 }
+
 
 .alltb tr:hover {
     cursor: pointer; 

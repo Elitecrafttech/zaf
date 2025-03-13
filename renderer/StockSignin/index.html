@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../StockSignin/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+    
+    <title>Stock SignIn</title>
+</head>
+<body>
+    <main class="main-reg">
+        <div class="top">
+            <a href="../Homedir/index.html">
+                <img src="../asset/logo.png" alt="" height="60px">
+            </a>
+            
+        </div>
+
+        <div class="form">
+            <div class=""><a href="../Stock/index.html">Log In</a></div>
+
+            <label for=""> 
+                <div>Email</div>
+                <input class="mail" type="text" name="Email"  placeholder="Enter User Email">
+            </label>
+
+            <label for=""> 
+                <div class="hd">Password </div>
+                <input class="pass" type="text" name="Password"  placeholder="Enter User password">
+            </label>
+
+            <div>
+                <button onclick="log()">Sign In</button>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    async function log() {
+        const mail = document.querySelector(".mail").value;
+        const pass = document.querySelector(".pass").value;
+        console.log(mail);
+        console.log(pass);
+        try {
+            const response = await fetch('https://zaf-farm.onrender.com/login-as-stock',{
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: mail,
+                    password: pass
+                })
+            })
+            const data = await response.json();
+            if (response.ok) {
+                window.location.href = '../Verifyotp/index.html';
+            } else {
+                console.log('Invalid email or password');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        
+    }
+</script>
+</html>

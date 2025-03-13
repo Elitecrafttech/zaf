@@ -42,7 +42,7 @@ a{
     gap: 100px;
     border-radius: 5px;
 }
-.top1{
+.top1, .top2{
     display: flex;
     align-items: center;
     padding: 20px;
@@ -60,7 +60,6 @@ a{
     border-radius: 5px;
 }
 .reg:hover{
-    scale: 1.2;
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }
@@ -76,7 +75,6 @@ a{
     border-radius: 5px;
 }
 .signin:hover{
-    scale: 1.2;
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }
@@ -87,12 +85,26 @@ a{
     gap: 10px;
     font-weight: bolder;
     font-size: 18px;
-    padding: 18px 55px;
+    padding: 15px 50px;
     border: 2px solid #D37878;
     border-radius: 5px;
 }
 .track:hover{
-    scale: 1.2;
+    background-color: #f5bebe;
+    transition: transform 0.1s ease, background-color 0.1s ease-in-out;
+}
+.cus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: 2px solid #D37878;
+    border-radius: 5px;
+}
+.cus:hover{
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }

@@ -61,7 +61,6 @@ a{
     border-radius: 5px;
 }
 .stock:hover{
-    scale: 1.1;
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }
@@ -81,7 +80,6 @@ a{
     border-radius: 5px;
 }
 .sale:hover{
-    scale: 1.1;
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }
@@ -101,7 +99,6 @@ a{
     border-radius: 5px;
 }
 .prod:hover{
-    scale: 1.1;
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }
@@ -122,7 +119,6 @@ a{
     border-radius: 5px;
 }
 .inven:hover{
-    scale: 1.1;
     background-color: #f5bebe;
     transition: transform 0.1s ease, background-color 0.1s ease-in-out;
 }

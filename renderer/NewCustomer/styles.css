@@ -16,64 +16,14 @@ a{
     background-color: #D2C5C5;
     gap: 40px;
 }
-.form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-.namelab{
-    display: flex;
-    align-items: center;
-    gap: 50px;
-
-}
 .top{
     font-size: 30px;
     font-weight: bolder;
 }
-.hd{
-    font-size: 18px;
-    font-weight: bolder;
-}
-.inp{
-    background-color: transparent;
-    border: 1.5px solid black;
-    padding: 10px ;
-    border-radius: 5px;
-    outline: none;
-    text-align: center;
-    width: 20vw;
-}
-.btn{
-    background-color: #CF7373;
-    border: none;
-    padding: 10px 40px;
-    border-radius: 5px;
-    font-weight: bolder;
-    font-size: 18px;
-    color: black;
-}
 .fahm{
-    display: none;
-    flex-direction: column;
-    gap: 40px;
-}
-.farmtwo{
     display: flex;
     flex-direction: column;
     gap: 40px;
-}
-.info-box { 
-    display: none;
-    flex-direction: column;
-    /* align-items: center; */
-    min-width: 30%;
-    padding: 30px;
-    border: 1.5px solid black;
-    border-radius: 5px;
-    background: transparent;
-    gap: 30px;
 }
 .farm-data{
     display: flex;
@@ -88,7 +38,7 @@ a{
 .lb1{
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 55px;
 }
 .lb1 input{
     background-color: transparent;
@@ -105,7 +55,7 @@ a{
 .lb2{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 80px;
 }
 .lb2 input{
     background-color: transparent;
@@ -122,7 +72,7 @@ a{
 .lb3{
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
 }
 .lb3 input{
     background-color: transparent;
@@ -155,7 +105,8 @@ a{
 }
 .lb5{
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 35px;
 }
 .lb5 input{
     background-color: transparent;
@@ -171,7 +122,8 @@ a{
 }
 .lb6{
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 15px;
 }
 .lb6 input{
     background-color: transparent;
@@ -187,7 +139,8 @@ a{
 }
 .lb7{
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 90px;
 }
 .lb7 input{
     background-color: transparent;
@@ -203,7 +156,8 @@ a{
 }
 .lb8{
     display: flex;
-    gap: 75px;
+    align-items: center;
+    gap: 35px;
 }
 .lb8 input{
     background-color: transparent;
@@ -217,7 +171,108 @@ a{
     font-weight: bold;
     font-size: 18px;
 }
-
+.lb9{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.lb9 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb9 p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.lb01{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.lb01 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb01 p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.lb02{
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+.lb02 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb02 p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.lb03{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.lb03 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb03 p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.lb04{
+    display: flex;
+    align-items: center;
+    gap: 75px;
+}
+.lb04 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb04 p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.lb05{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.lb05 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb05 p{
+    font-weight: bold;
+    font-size: 18px;
+}
 .lstbtn{
     background-color: #CF7373;
     border: none;
@@ -226,4 +281,5 @@ a{
     font-weight: bolder;
     font-size: 18px;
     display: flex;
+    align-self: self-end;
 }

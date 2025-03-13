@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="../Signin//styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+    
+    <title>SignIn Farmer For Record</title>
+</head>
+<body>
+    <main class="main-reg">
+        <div class="top">
+            <a href="../StockSignin/index.html">
+                <img src="../asset/logo.png" alt="" height="60px">
+            </a>
+            
+        </div>
+
+        <div class="form">
+            <div class="top">OTP sent to your mail</div>
+
+            <label class="namelab" for=""> 
+                <div class="hd">Enter OTP </div>
+                <input class="email" type="text" placeholder="Enter Email">
+                <input class="otp" type="text" placeholder="Enter OTP">
+                <a><button onclick="otp()">confirm</button></a>
+            </label>
+        </div>
+
+
+
+    </main>
+</body>
+<script>
+    async function otp() {
+        const email = document.querySelector(".email").value;
+        const otp = document.querySelector(".otp").value;
+        console.log(email);
+        console.log(otp);
+        try {
+            const response = await fetch('https://zaf-farm.onrender.com/verify-otp',{
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    otp
+                })
+            })
+            const data = await response.json();
+            if (response.ok) {
+                if (data.token) { 
+                    localStorage.setItem("API_TOKEN", data.token);
+                    console.log("Token saved:", data.token);
+                }
+
+                window.location.href = '../Stock/index.html';
+            } else {
+                console.log('Invalid email or otp');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        
+    }
+</script>
+</html>

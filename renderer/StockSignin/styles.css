@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+.main-reg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 50px;
+    background-color: #D2C5C5;
+    gap: 40px;
+}
+.top{
+    font-size: 30px;
+    font-weight: bolder;
+}
