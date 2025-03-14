@@ -7,79 +7,163 @@
     <title>Sales Record</title>
 </head>
 <body>
-    <div class="all">
+    <!-- <div class="all"> -->
+        <div>
+            <a style="text-decoration: none; color: black; position: absolute; top: 50px; left: 50px;" href="../SalesManager/index.html">&#8592; Back</a>
+        </div>
         <div class="all">
             <div class="head">
                  <img class="logo"  src="../asset/logo.png" alt="">
              </div>
-            <a href="../Salesdir/index.html"><h1>Sales Day Record</h1></a>
+            <h1>Sales Day Record</h1>
             <h3>Welcome to the sales record section, kindly select the part of the sales you want to track in order to sell full details.</h3>
             <div class="record">
                 <div class="pot5">
                     <h3>Sales Type</h3>
-                    <select class="chick" name="" id="">
-                        <option value="">Whole Chicken</option>
-                        <option value="">Rejected Laps</option>
-                        <option value="">Egg</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                    <select class="salestype" name="salestype" id="">
+                        <option value="Whole Chicken">Whole Chicken</option>
+                        <option value="Breeder fillet">Breeder fillet</option>
+                        <option value="Backbone">Backbone</option>
+                        <option value="Chicken lap">Chicken lap</option>
+                        <option value="Specil wing">Specil wing</option>
+                        <option value="Wing">Wing</option>
+                        <option value="Skin">Skin</option>
+                        <option value="Off cut">Off cut</option>
+                        <option value="Breast fillet">Breast fillet</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Thigh bone">Thigh bone</option>
+                        <option value="Thigh bone">Thigh bone</option>
+                        <option value="Special fillet">Special fillet</option>
+                        <option value="Breast strip">Breast strip</option>
+                        <option value="Hot wing">Hot wing</option>
+                        <option value="Bum bum">Bum bum</option>
+                        <option value="Neck">Neck</option>
+                        <option value="Head and feet">Head and feet</option>
+                        <option value="Liver">Liver</option>
+                        <option value="Gizzard">Gizzard</option>
+                        <option value="Rejected wings">Rejected wings</option>
+                        <option value="Fat">Fat</option>
+                        <option value="Drum stick">Drum stick</option>
                     </select>
                 </div>
                 <div>
                     <div class="pot5">
                         <h3>Month</h3>
-                        <select class="chick" name="" id="">
-                            <option value="">Jan</option>
-                            <option value="">Feb</option>
-                            <option value="">Mar</option>
-                            <option value="">Apr</option>
-                            <option value="">May</option>
-                            <option value="">Jun</option>
-                            <option value="">Jul</option>
-                            <option value="">Aug</option>
-                            <option value="">Sep</option>
-                            <option value="">Oct</option>
-                            <option value="">Nov</option>
-                            <option value="">Dec</option>
+                        <select class="month" name="month" id="">
+                            <option value="01">Jan</option>
+                            <option value="02">Feb</option>
+                            <option value="03">Mar</option>
+                            <option value="04">Apr</option>
+                            <option value="05">May</option>
+                            <option value="06">Jun</option>
+                            <option value="07">Jul</option>
+                            <option value="08">Aug</option>
+                            <option value="09">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
                         </select>
                     </div>
+                </div>
+                <div>
+                <div class="pot5">
+                    <h3>Year</h3>
+                    <input class="year" value="2025" type="text" name="" placeholder="e.g 2025">        
                 </div>
             </div>
         </div>
         <div class="but">
-            <a href="../SalesRecorddir/index.htm"><button>Get Data</button></a>
+            <button type="submit" class="btn1">Get Data</button>
         </div>
         <div>
+          
             <table>
-                <tr class="me">
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Ref</th>
-                    <th>Unit/KG</th>
-                    <th>Amount</th>
-                </tr>
-                <tr class="go">
-                    <th>12/01/05</th>
-                    <th>idowu</th>
-                    <th>55</th>
-                    <th>5</th>
-                    <th>17.000.00</th>
-                </tr>
+                <thead>
+                    <tr class="go">
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Salestype</th>
+                        <th>Ref</th>
+                        <th>Unit/KG</th>
+                        <th>Amount</th>
+                    </tr>
+                    
+                </thead>
+                <tbody class="table-body">
+                    <!-- Sales data will be dynamically inserted here -->
+                </tbody>
             </table>
         </div>
-    </div>
+    <!-- </div> -->
 </body>
 <script>
-    const [data, setDate] = useState();
-    const [name, setName] = useState();
-    const [ref, setRef] = useState();
-    const [ amount, setAmount] = useState();
-    const [unit, setUnit] = useState()
-    
+    document.querySelector(".but button").addEventListener("click", async function (event) {
+        const loginButton = document.querySelector('.btn1');
+        event.preventDefault();
+        loginButton.textContent = "Loading...";
+        loginButton.disabled = true;
+        loginButton.style.cursor = "not-allowed"
+        
+
+        const salesType = document.querySelector(".salestype").value.trim();
+        const month = document.querySelector(".month").value.trim();
+        const year = document.querySelector(".year").value.trim();
+
+        if (!salesType || !month || !year) {
+            alert("Please select sales type, month, and enter a year!");
+            
+            loginButton.textContent = "Get Data";
+            loginButton.disabled = false;
+            loginButton.style.cursor = "pointer"
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+
+        try {
+            const baseUrl = `https://zaf-farm.onrender.com/sales-by-type-month?salesType=${salesType}&month=${month}&year=${year}`;
+            const response = await fetch(baseUrl, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+            const data = await response.json();
+
+            loginButton.textContent = "Get Data";
+            loginButton.disabled = false;
+            loginButton.style.cursor = "pointer";
+
+            if (!data.sales || data.sales.length === 0) {
+                alert("No sales records found for the given criteria!");
+                return;
+            }
+
+            const tableBody = document.querySelector(".table-body");
+            tableBody.innerHTML = ""; // Clear previous data
+
+            data.sales.forEach(sale => {
+                const row = `
+                    <tr>
+                        <td>${new Date(sale.date).toLocaleDateString()}</td>
+                        <td>${sale.customer}</td>
+                        <td>${sale.salesType}</td>
+                        <td>${sale.ref}</td>
+                        <td>${sale.unit}</td>
+                        <td>N ${sale.amount}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        } catch (error) {
+            console.error("Error fetching sales data:", error);
+            alert("An error occurred while fetching data.");
+            loginButton.disabled = false;
+            loginButton.textContent = "Get Data";
+            loginButton.style.cursor = "pointer";
+        }
+    });
 </script>
+
 </html>

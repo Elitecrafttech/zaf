@@ -3,113 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Salesdir/styles.css">
     <title>Sales</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
-    <div class="all">
-        <div class="head">
-            <img class="logo" src="../asset/Total Sales.png" alt="">
-            <h2>Sales</h2>
-        </div>
-        <div class="boy">
-            <a href="../SalesVerificationdir/index.html"><h3 class="creat">Create a new sales</h3></a>
+    <div>
+        <a style="text-decoration: none; color: black; position: absolute; top: 50px; left: 50px;" href="../SalesManager/index.html">&#8592; Back</a>
+    </div>
+    <div class="container">
+        <div class="bothlogo">
+            <div class="header">
+                <a href="../SalesVerificationdir/index.html">
+                    <img class="saleslogo" src="../asset/Total Sales.png" alt="Logo">
+                </a>
+                <h2>Sales</h2>
+            </div>
             <div>
-                <form  class="sales">
-                    <div class="pot5">
-                        <h4>Sales Type</h4>
-                        <select class="salesType" name="" id="">
-                            <option value="">Whole Chicken</option>
-                            <option value="">Breeder fillet</option>
-                            <option value="">Backbone</option>
-                            <option value="">Chicken lap</option>
-                            <option value="">Specil wing</option>
-                            <option value="">Wing</option>
-                            <option value="">Skin</option>
-                            <option value="">Off cut</option>
-                            <option value="">Breast fillet</option>
-                            <option value="">Rejected laps</option>
-                            <option value="">Thigh bone</option>
-                            <option value="">Thigh fillet</option>
-                            <option value="">Special fillet</option>
-                            <option value="">Breast strip</option>
-                            <option value="">Hot wing</option>
-                            <option value="">Bum bum</option>
-                            <option value="">Neck</option>
-                            <option value="">Head and feet</option>
-                            <option value="">Liver</option>
-                            <option value="">Gizzard</option>
-                            <option value="">Rejected wings</option>
-                            <option value="">Fat</option>
-                            <option value="">Drum stick</option>
-                        </select>
-                    </div>
-                    <div class="pot">
-                        <h4>Unit</h4>
-                        <input class="unit" type="text" >
-                    </div>
-                    <div class="pot1">
-                        <h4>Quantity</h4>
-                        <div class="putin">
-                            <input class="quantity" type="text" name="" value="" placeholder="">
-                            <h4>KG</h4>
-                        </div>
-                    </div>
-                    <div class="pot2">
-                        <h4>Rate</h4>
-                        <div class="putin">
-                            <input class="rate" type="text" name="" value="" placeholder="">
-                            <h4>N</h4>
-                        </div>
-                    </div>
-                    <div class="pot3">
-                        <h4>Amount</h4>
-                        <div class="putin">
-                            <input class="amount" type="text">
-                            <h4>N</h4>
-                        </div>
-                    </div>
-                </form>
+                <!-- <img class="logo" src="../asset/logo.png" alt=""> -->
             </div>
         </div>
-        <div class="but">
-            <a href="../SalesRecorddir/index.html"><button>Create</button></a>
-        </div>
-        <script>
-            
-            async function createSales(){
-                const salesType = document.querySelector('.salesType').value;
-                const unit = document.querySelector('.unit').value;
-                const quantity = document.querySelector('.quantity').value;
-                const rate = document.querySelector('.rate').value;
-                const amount = document.querySelector('.amount').value;
 
-                const data = {
-                    salesType,
-                    unit,
-                    quantity,
-                    rate,
-                    amount
-                };
-            
-                    try {
-                        const response = await fetch("https://zaf-farm.onrender.com/record-sale", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    if(!response.ok){
-                        // const data = await response.json()
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                        // console.log(data)
-                    }
-                    } catch (error) {
-                        console.log(error)
-                    }
-            }    
-        </script>
+        <h3 class="title">Create a new sale</h3>
+
+        <form id="salesForm">
+            <div class="form-group">
+                <label>Customer's Name</label>
+                <input type="text" class="name" placeholder="Enter name">
+            </div>
+
+            <div class="form-group">
+                <label>Sales Type</label>
+                <select class="salesType">
+                    <option value="Whole Chicken">Whole Chicken</option>
+                    <option value="Breeder fillet">Breeder fillet</option>
+                    <option value="Backbone">Backbone</option>
+                    <option value="Chicken lap">Chicken lap</option>
+                    <option value="Specil wing">Specil wing</option>
+                    <option value="Wing">Wing</option>
+                    <option value="Skin">Skin</option>
+                    <option value="Off cut">Off cut</option>
+                    <option value="Breast fillet">Breast fillet</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Thigh bone">Thigh bone</option>
+                    <option value="Special fillet">Special fillet</option>
+                    <option value="Breast strip">Breast strip</option>
+                    <option value="Hot wing">Hot wing</option>
+                    <option value="Bum bum">Bum bum</option>
+                    <option value="Neck">Neck</option>
+                    <option value="Head and feet">Head and feet</option>
+                    <option value="Liver">Liver</option>
+                    <option value="Gizzard">Gizzard</option>
+                    <option value="Rejected wings">Rejected wings</option>
+                    <option value="Fat">Fat</option>
+                    <option value="Drum stick">Drum stick</option>
+                </select>
+                
+            </div>
+
+            <div class="form-group">
+                <label>Unit</label>
+                <input type="text" class="unit" placeholder="e.g kg">
+            </div>
+
+            <div class="form-group">
+                <label>Quantity (KG)</label>
+                <input type="number" class="quantity" placeholder="Enter quantity">
+            </div>
+
+            <div class="form-group">
+                <label>Rate (₦)</label>
+                <input type="number" class="rate" placeholder="Enter rate">
+            </div>
+
+            <div class="form-group">
+                <label>Total (₦)</label>
+                <span class="total">0</span>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Sale</button>
+        </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const quantityInput = document.querySelector(".quantity");
+    const customer = document.querySelector(".name");
+    const rateInput = document.querySelector(".rate");
+    const totalSpan = document.querySelector(".total");
+    const salesForm = document.getElementById("salesForm");
+    const submitBtn = document.querySelector(".submit-btn");
+
+    function updateTotal() {
+        let quantity = parseFloat(quantityInput.value) || 0;
+        let rate = parseFloat(rateInput.value) || 0;
+        let total = quantity * rate;
+        totalSpan.textContent = total.toLocaleString(); // Format the number properly
+    }
+
+    // Listen for real-time input changes
+    quantityInput.addEventListener("input", updateTotal);
+    rateInput.addEventListener("input", updateTotal);
+
+    salesForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        submitBtn.textContent = "Processing...";
+        submitBtn.disabled = true;
+
+        const salesType = document.querySelector(".salesType").value.trim();
+        const customer = document.querySelector(".name").value.trim();
+        const unit = document.querySelector(".unit").value.trim();
+        const quantity = quantityInput.value.trim();
+        const rate = rateInput.value.trim();
+
+        if (!salesType || !quantity || !rate || !unit) {
+            submitBtn.textContent = "Create Sale";
+            submitBtn.disabled = false;
+            Toastify({
+                text: "All fields are required",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#ff6b6b"
+            }).showToast();
+            return;
+        }
+
+        // Data to send
+        const data = { salesType, unit, quantity, rate, total: totalSpan.textContent, customer };
+        const tk = localStorage.getItem("token");
+
+        try {
+            const response = await fetch("https://zaf-farm.onrender.com/record-sale", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${tk}`
+                },
+                body: JSON.stringify(data)
+            });
+
+            const responseData = await response.json();
+            Toastify({
+                text: responseData.message,
+                backgroundColor: responseData.success ? "#4CAF50" : "#ff6b6b",
+                duration: 3000
+            }).showToast();
+            
+
+            if (response.ok) {
+                setTimeout(() => {
+                    window.location.href = "../Allsales/index.html";
+                }, 2000);
+            } else {
+                submitBtn.textContent = "Create Sale";
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            submitBtn.textContent = "Create Sale";
+            submitBtn.disabled = false;
+            Toastify({
+                text: "Something went wrong. Try again!",
+                backgroundColor: "#ff6b6b"
+            }).showToast();
+        }
+    });
+});
+
+    </script>
 </body>
 </html>
