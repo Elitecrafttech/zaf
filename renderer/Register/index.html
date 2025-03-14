@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../Register/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
     
@@ -11,11 +11,13 @@
 </head>
 <body>
     <main class="main-reg">
-        <div class="top">
-            <a href="../Stock/index.html">
+        <div class="bck">
+            <a href="../Stock/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
+
+            <div class="top">
                 <img src="../asset/logo.png" alt="" height="60px">
-            </a>
-            <div class="sft">Register New Person Into The Software</div>
+                <div class="sft">Register New Person Into The Software</div>
+            </div>
         </div>
 
         <div class="form">
@@ -25,7 +27,10 @@
             </label>
 
             <label class="namelab" for=""> <div class="">Farmer’s Email :</div>
-                <input class="email" type="text" name="email" id="" placeholder="Enter Farmer’s Email"> 
+                <div style="display: flex; gap: 5px; align-items: center;">
+                    <input class="email" type="text" name="email" id="" placeholder="Enter Farmer’s Email"> 
+                <p style="color: gray;">Optional</p>
+                </div>
             </label>
 
             <label class="phonelab" for=""> <div class="">Phone Number :</div>
@@ -52,6 +57,7 @@
         <!-- <div class="alert" style="bottom: 500px;"></div> -->
     </main>
 </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     async function reg() {
         const name = document.querySelector('.name').value;
@@ -60,33 +66,157 @@
         const accountNumber = document.querySelector('.accountNumber').value;
         const bankName = document.querySelector('.bankName').value;
         const accountName = document.querySelector('.accountName').value;
+        const btn = document.querySelector(".regbtn");
+        btn.textContent = "Loading...";
+        btn.disabled = true;
+        btn.style.cursor = "not-allowed"
 
         if(!name){
-            console.log('Please enter farmer name');
-            return;
-        }else if(!email){
-            console.log('Please enter email');
-            return;
-        }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-            console.log('Please enter a valid email address');
-            return;
+          
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter farmer name",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+                return;
         }else if(!phoneNumber){
-            console.log('Please enter phone number');
+
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter phone number",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             return;
         }else if(!/^\d{11}$/.test(phoneNumber)){
-            console.log('Please enter a valid 11-digit phone number');
+            
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter a valid 11-digit phone number",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             return;
         }else if(!accountNumber){
-            console.log('Please enter account number');
+            
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter account number",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             return;
         }else if(!/^\d{10}$/.test(accountNumber)){
-            console.log('Please enter a valid 10-digit account number');
+           
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter a valid 10-digit account number",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             return;
         }else if(!bankName){
-            console.log('Please enter bank name');
+   
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter bank name",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             return;
         }else if(!accountName){
-            console.log('Please enter account name');
+            
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter account name",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+            return;
+        }
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+            
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter a valid email address",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+            return;
+        }
+
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+            
+            btn.textContent = "Register";
+            btn.disabled = false;
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "Please enter a valid email address",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             return;
         }
 
@@ -111,15 +241,61 @@
             })
             if(response.ok){
                 const data = await response.json();
-                console.log(data);
-                console.log("Farmer registered successfully");
-                window.location.href = '../Stock/index.html';
+                // console.log(data);
+                
+                btn.textContent = "Register";
+                btn.disabled = false;
+                btn.style.cursor = "pointer"
+
+                Toastify({
+                    text: `Farmer with ID ${data.farmer.farmerCode} registered successfully`,
+                    duration: 15000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)"
+                    }
+                }).showToast();
+                
+                setTimeout(() => {
+                    window.location.href = '../Stock/index.html';
+                }, 10000);
             }else{
+                btn.disabled = false;
+                btn.textContent = "Register";
+                btn.style.cursor = "pointer"
+
+                const data = await response.json();
+                console.log(data);
+
+                Toastify({
+                    text: `${data.error}`,
+                    duration: 10000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+
                 console.error('Error:', error);
-                console.log("Failed to register farmer");
+                
             }
         } catch (error) {
+            btn.disabled = false;
+            btn.textContent = "Register";
+            btn.style.cursor = "pointer"
+
             console.log('Error', error);
+            Toastify({
+                    text: "Network error, please try again",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "left",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             
         }
     }

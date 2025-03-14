@@ -6,7 +6,8 @@ function createMainWindow(){
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
+            contextIsolation: true, 
         //     preload: path.join(__dirname, 'preload.js')
         }
     });
@@ -17,3 +18,9 @@ function createMainWindow(){
 app.whenReady().then(()=>{
     createMainWindow();
 })
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});

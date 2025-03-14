@@ -3,17 +3,36 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+        <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" /> -->
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';" />
         <link rel="stylesheet" href="../SingleRecord/styles.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
         <title>Single Farmer's Record</title>
     </head>
 <body>
     <main class="main-index">
-        <div class="logo">
-            <a href="../Records/index.html"><img src="../asset/logo.png" alt=""></a>
-            <p>Single Farmer’s Record</p>
+        <div class="bck">
+            <a href="../Records/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><i class="fa-solid fa-arrow-left fa-fw" title="Back"></i></a>
+
+            <div class="logo">
+                <img src="../asset/logo.png" alt="">
+                <p>Single Farmer’s Record</p>
+            </div>
+        </div>
+        
+        
+        <div class="form">
+            <div class="top"><a href="../Records/index.html">Farm Records</a></div>
+
+            <label class="namelab" for=""> 
+                <div class="hd">Farmer’s Code </div>
+                <input class="inp" type="text" name="name" id="farmerCode" value="09162345647" placeholder="Enter Farmer’s code">
+                <!-- <a href="" id="confirmBtn"> -->
+                    <button class="btn" >confirm</button>
+                <!-- </a> -->
+            </label>
         </div>
         <div class="main-div">
             
@@ -38,25 +57,8 @@
                   <th>Date of payment</th>
                   <th>Status</th>
                 </tr>
-                <tr>
-                 <td>3/1/25</td>
-                 <td>Purchase of birds</td>
-                 <td>Sholanik Investment Nig. Ltd</td>
-                 <td>08098877876</td>
-                 <td>1013294361</td>
-                 <td>Keystone</td>
-                 <td>1061</td>
-                 <td>2708</td>
-                 <td>561.78</td>
-                 <td>0</td>
-                 <td>2146.22</td>
-                 <td>3,000</td>
-                 <td>6,438,660</td>
-                 <td>0</td>
-                 <td>6,438,660</td>
-                 <td>14/1/2025</td>
-                 <td>14/1/2025</td>
-                 <td>Peding</td>
+                <tr class="tablerow">
+                 
                 </tr>
               </table>
 
@@ -72,4 +74,60 @@
         
     </main>
 </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", async function (){
+
+        
+        const maindiv = document.querySelector(".main-div");
+        const tk = localStorage.getItem('API_TOKEN');
+        const btn = document.querySelector(".btn")
+        btn.addEventListener("click", async function(){
+            const farmerCode = document.getElementById("farmerCode").value;
+            const table = document.querySelector(".alltb");
+            const tablerow = document.querySelector(".tablerow");
+            try {
+            const response = await fetch(`https://zaf-farm.onrender.com/get-single-farm-record/${farmerCode}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tk}`
+                },
+            })
+            
+            
+            const table = document.querySelector(".alltb");
+
+            if(response.ok){
+                maindiv.style.display = "flex";
+                const data = await response.json()
+                console.log(data);
+                tablerow.innerHTML = `
+                    <td>${data.data.date ? new Date(data.data.date).toLocaleDateString() : "-"}</td>
+                    <td>${data.data.details || "-"}</td>
+                    <td>${data.data.name || "-"}</td>
+                    <td>${data.data.phoneNumber || "-"}</td>
+                    <td>${data.data.accountNumber || "-"}</td>
+                    <td>${data.data.bankName || "-"}</td>
+                    <td>${data.data.numberOfBirds || "-"}</td>
+                    <td>${data.data.totalKG || "-"}</td>
+                    <td>${data.data.createKG || "-"}</td>
+                    <td>${data.data.crop || "-"}</td>
+                    <td>${data.data.actualKG || "-"}</td>
+                    <td>${data.data.pricePerKG || "-"}</td>
+                    <td>${data.data.amount || "-"}</td>
+                    <td>${data.data.amountPaid || "-"}</td>
+                    <td>${data.data.balance || "-"}</td>
+                    <td>${data.data.dueDate ? new Date(data.data.dueDate).toLocaleDateString() : "-"}</td>
+                    <td>${data.data.dateOfPayment ? new Date(data.data.dateOfPayment).toLocaleDateString() : "-"}</td>
+                    <td>${data.data.status || "-"}</td>
+                `;
+            }
+        } catch (error) {
+            
+        }
+        })
+    });
+</script>
 </html>

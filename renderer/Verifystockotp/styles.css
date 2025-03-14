@@ -9,13 +9,13 @@ a{
 .main-reg{
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     justify-content: center;
     min-height: 100vh;
     padding: 50px;
     background-color: #D2C5C5;
     gap: 40px;
 }
-
 .bck a{
     color: black;
     position: relative;
@@ -24,21 +24,21 @@ a{
 }
 .top{
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     align-items: center;
     font-size: 30px;
     font-weight: bolder;
     
 }
-.mail{
+.email{
     width: 400px;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #ccc;
     outline: none;
 }
-.pass{
+.otp{
     width: 400px;
     padding: 10px;
     border-radius: 5px;
@@ -46,13 +46,28 @@ a{
     outline: none;
 }
 button{
-    padding: 10px 40px;
+    padding: 10px 20px;
     border: none;
     background-color: black;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+    width: 200px;
+    display: flex;
+    align-items: self-end;
+}
+.emaillab{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    outline: none;
+}
+.otplab{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    outline: none;
 }
 .form{
     display: flex;

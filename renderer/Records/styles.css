@@ -54,17 +54,17 @@ a{
 }
 
 .alltb {
-    display: block; /* Make the table block-level for scrolling */
-    max-width: 100%; /* Ensure it doesn't overflow the viewport */
-    overflow-x: auto; /* Horizontal scroll */
+    display: block; 
+    max-width: 100%;
+    overflow-x: auto;
     border-spacing: 5px;
     background-color: #f4f4f4;
     font-family: Arial, sans-serif;
 }
 
 .alltb table {
-    width: 100%; /* Ensure the table takes up the full container width */
-    border-collapse: collapse; /* Remove unnecessary space between cells */
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .alltb th {
@@ -74,8 +74,8 @@ a{
     text-align: left;
     border-radius: 5px;
     position: sticky;
-    top: 0; /* Make the header sticky at the top */
-    z-index: 1; /* Ensure it stays on top when scrolling */
+    top: 0; 
+    z-index: 1; 
 }
 
 .alltb td {

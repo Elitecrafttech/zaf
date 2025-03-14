@@ -17,15 +17,59 @@ a{
     padding-left: 80px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
+}
+.bck a{
+    position: relative;
+    top: 100px;
+    left: 80px;
 }
 .logo p{
     font-weight: bolder;
     font-size: 18px;
     font-family: Arial, sans-serif;
 }
-.main-div{
+.form{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.namelab{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+}
+.top{
+    font-size: 30px;
+    font-weight: bolder;
+}
+.hd{
+    font-size: 18px;
+    font-weight: bolder;
+}
+.inp{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 10px ;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+    width: 20vw;
+}
+.btn{
+    background-color: #CF7373;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 18px;
+    color: black;
+}
+.main-div{
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -56,6 +100,7 @@ a{
 }
 .alltb {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-width: 100%;
