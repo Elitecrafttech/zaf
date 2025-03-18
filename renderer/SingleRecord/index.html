@@ -3,18 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" /> -->
         <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';" />
         <link rel="stylesheet" href="../SingleRecord/styles.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> -->
     
         <title>Single Farmer's Record</title>
     </head>
 <body>
     <main class="main-index">
         <div class="bck">
-            <a href="../Records/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><i class="fa-solid fa-arrow-left fa-fw" title="Back"></i></a>
+            <a href="../Records/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
 
             <div class="logo">
                 <img src="../asset/logo.png" alt="">
@@ -74,7 +73,6 @@
         
     </main>
 </body>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
 
     document.addEventListener("DOMContentLoaded", async function (){
@@ -84,11 +82,15 @@
         const tk = localStorage.getItem('API_TOKEN');
         const btn = document.querySelector(".btn")
         btn.addEventListener("click", async function(){
-            const farmerCode = document.getElementById("farmerCode").value;
+            const farmernumber = document.getElementById("farmerCode").value;
             const table = document.querySelector(".alltb");
             const tablerow = document.querySelector(".tablerow");
+            btn.textContent = "Loading...";
+            btn.disabled = true;
+            btn.style.cursor = "not-allowed"
+
             try {
-            const response = await fetch(`https://zaf-farm.onrender.com/get-single-farm-record/${farmerCode}`, {
+            const response = await fetch(`https://zaf-farm.onrender.com/get-single-farm-record/${farmernumber}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,6 +102,20 @@
             const table = document.querySelector(".alltb");
 
             if(response.ok){
+                btn.textContent = "confirm";
+                btn.disabled = false;
+                btn.style.cursor = "pointer"
+
+                Toastify({
+                    text: "Data fetched successfully",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)"
+                    }
+                }).showToast();
+                
                 maindiv.style.display = "flex";
                 const data = await response.json()
                 console.log(data);
@@ -116,18 +132,48 @@
                     <td>${data.data.crop || "-"}</td>
                     <td>${data.data.actualKG || "-"}</td>
                     <td>${data.data.pricePerKG || "-"}</td>
-                    <td>${data.data.amount || "-"}</td>
-                    <td>${data.data.amountPaid || "-"}</td>
-                    <td>${data.data.balance || "-"}</td>
+                    <td>${data.data.amount ? data.data.amount.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
+                    <td>${data.data.amountPaid ? data.data.amountPaid.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
+                    <td>${data.data.balance ? data.data.balance.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
                     <td>${data.data.dueDate ? new Date(data.data.dueDate).toLocaleDateString() : "-"}</td>
                     <td>${data.data.dateOfPayment ? new Date(data.data.dateOfPayment).toLocaleDateString() : "-"}</td>
                     <td>${data.data.status || "-"}</td>
                 `;
+            }else{
+                btn.disabled = false;
+                btn.textContent = "confirm";
+                btn.style.cursor = "pointer"
+
+                const message = await response.json();
+                console.log(message);
+
+                Toastify({
+                    text: `${message.error}`,
+                    duration: 10000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             }
         } catch (error) {
-            
+            btn.disabled = false;
+            btn.textContent = "confirm";
+            btn.style.cursor = "pointer"
+            Toastify({
+                    text: `Can't fetch data ${error}, please try again`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
         }
         })
     });
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 </html>

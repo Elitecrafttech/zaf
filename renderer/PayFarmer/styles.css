@@ -16,6 +16,10 @@ a{
     background-color: #D2C5C5;
     gap: 40px;
 }
+.bck a{
+    position: relative;
+    right: 250px;
+}
 .top{
     font-size: 30px;
     font-weight: bolder;
@@ -32,7 +36,11 @@ a{
     gap: 50px;
 
 }
-
+.userbx{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 .hd{
     font-size: 18px;
     font-weight: bolder;

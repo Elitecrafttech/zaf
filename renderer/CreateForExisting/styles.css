@@ -12,9 +12,24 @@ a{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    width: 100%;
     padding: 50px;
     background-color: #D2C5C5;
     gap: 40px;
+}
+.bck a{
+    position: relative;
+    /* bottom: 100px; */
+    right: 400px;
+}
+.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    font-size: 30px;
+    font-weight: bolder;
 }
 .form{
     display: flex;
@@ -28,10 +43,7 @@ a{
     gap: 50px;
 
 }
-.top{
-    font-size: 30px;
-    font-weight: bolder;
-}
+
 .hd{
     font-size: 18px;
     font-weight: bolder;
@@ -67,8 +79,8 @@ a{
 .info-box { 
     display: none;
     flex-direction: column;
-    /* align-items: center; */
-    min-width: 30%;
+    align-items: center;
+    min-width: 50%;
     padding: 30px;
     border: 1.5px solid black;
     border-radius: 5px;
@@ -94,7 +106,7 @@ a{
 .lb1{
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 40px;
 }
 .lb1 input{
     background-color: transparent;
@@ -111,7 +123,7 @@ a{
 .lb2{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 55px;
 }
 .lb2 input{
     background-color: transparent;
@@ -128,7 +140,7 @@ a{
 .lb3{
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 5px;
 }
 .lb3 input{
     background-color: transparent;
@@ -145,7 +157,7 @@ a{
 .lb4{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 .lb4 input{
     background-color: transparent;
@@ -161,7 +173,8 @@ a{
 }
 .lb5{
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 40px;
 }
 .lb5 input{
     background-color: transparent;
@@ -177,7 +190,7 @@ a{
 }
 .lb6{
     display: flex;
-    gap: 30px;
+    gap: 50px;
 }
 .lb6 input{
     background-color: transparent;
@@ -209,7 +222,7 @@ a{
 }
 .lb8{
     display: flex;
-    gap: 75px;
+    gap: 60px;
 }
 .lb8 input{
     background-color: transparent;

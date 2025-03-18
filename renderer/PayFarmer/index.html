@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../PayFarmer/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
     
@@ -11,11 +12,12 @@
 </head>
 <body>
     <main class="main-reg">
-        <div class="top">
-            <a href="../SingleRecord/index.html">
-                <img src="../asset/logo.png" alt="" height="60px">
-            </a>
-            
+        <div class="bck">
+            <a href="../SingleRecord/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
+
+            <div class="top">
+                <img src="../asset/logo.png" alt="" height="100px">
+            </div>
         </div>
 
         <div class="form">
@@ -24,35 +26,45 @@
             <label class="namelab" for=""> 
                 <div class="hd">Farmer’s Code </div>
                 <input class="inp" type="text" name="name" id="farmerCode" value="zaf_001" placeholder="Enter Farmer’s code">
-                <a href="" id="confirmBtn"><button class="btn">Look Up</button></a>
+                <!-- <a href="" id="confirmBtn"> -->
+                    <button class="btn" onclick="userdetail()">Look Up</button>
+                <!-- </a> -->
             </label>
         </div>
 
         <!-- Farmer Info Box -->
-       <div class="info-box" id="infoBox">
-           <p><strong>Name:</strong> <span id="name">-</span></p>
-           <p><strong>Phone Number:</strong> <span id="phone">-</span></p>
-           <p><strong>Bank Name:</strong> <span id="bank">-</span></p>
-           <p><strong>Account Number:</strong> <span id="account">-</span></p>
-           <p><strong>Account Name:</strong> <span id="accountName">-</span></p>
-           <p><strong>Customer Code:</strong> <span id="customerCode">-</span></p>
-       </div>
+        <div class="info-box" id="infoBox">
+            <div class="userbx"><strong>Name:</strong><span id="name">-</span></div>
+            <div class="userbx"><strong>Phone Number:</strong><span id="phone">-</span></div>
+            <div class="userbx"><strong>Bank Name:</strong><span id="bank">-</span></div>
+            <div class="userbx"><strong>Account Number:</strong><span id="account">-</span></div>
+            <div class="userbx"><strong>Account Name:</strong><span id="accountName">-</span></div>
+            <div class="userbx"><strong>Customer Code:</strong><span id="customerCode">-</span></div>
+           </div>
         <div class="fahm" id="fahm">
 
-            <!-- Additional Farm Data Inputs -->
         <div class="farmtwo">
             <label for="" class="amt">
+                <div>
+                    <p>farmer Number</p>
+                    <div class="amtdiv">
+                        <input type="text" name="" class="phone" placeholder="" readonly>
+                       
+                    </div>
+                </div>
+               <div>
                 <p>Amount to be paid</p>
                 <div class="amtdiv">
-                    <input type="text" name="" id="amountInput" value="500,000.00" placeholder="Enter Amount">
+                    <input type="text" name="" id="amountInput" placeholder="Enter Amount">
                     <p>₦</p>
                 </div>
+               </div>
                 
             </label>
             <div class="allbt">
-                <a href="../Homedir/index.html">
+                <!-- <a href="../Homedir/index.html"> -->
                     <button class="bt1">continue</button>
-                </a>
+                <!-- </a> -->
             </div>
         </div>
         </div>
@@ -62,95 +74,150 @@
     </main>
 </body>
 <script>
-    // Fetch Farmer's Information
-document.addEventListener("DOMContentLoaded", function(){
-    const farmerCodeInput = document.getElementById("farmerCode");
-    const confirmBtn = document.getElementById("confirmBtn");
-    const infoBox = document.getElementById("infoBox");
-    const farmData = document.getElementById("fahm");
-    const amountInput = document.getElementById('amountInput');
+    async function userdetail() {
+        const farmerCode = document.getElementById("farmerCode").value
+        const infoBox = document.getElementById("infoBox");
+        const fahm = document.getElementById("fahm");
+        const btn = document.querySelector(".btn");
+        btn.textContent = "Loading...";
+        btn.disabled = true;
+        btn.style.cursor = "not-allowed"
 
-    // Preloader
-    const button = document.getElementById('confirmBtn');
-    const originalText = button.textContent;
+
+        localStorage.setItem("farmercode", farmerCode);
+        console.log("farmercode saved:", farmerCode);
+        
+        try {
+            const response = await fetch(`https://zaf-farm.onrender.com/farmer/${farmerCode}`)
+            if (response.ok ) {
+                const data = await response.json();
+                btn.textContent = "confirm";
+                btn.disabled = false;
+                btn.style.cursor = "pointer"
+
+            const nm = document.getElementById("name").textContent = data.farmer.name;
+            localStorage.setItem("name", nm);
+            const tel = data.farmer.phoneNumber;
+                // Directly set the phone number in the phone input field
+                const phoneInput = document.querySelector('.phone');
+                phoneInput.value = tel;
+            document.getElementById("phone").textContent = data.farmer.phoneNumber;
+            document.getElementById("bank").textContent = data.farmer.bankName;
+            document.getElementById("account").textContent = data.farmer.accountNumber;
+            document.getElementById("accountName").textContent = data.farmer.accountName;
+            document.getElementById("customerCode").textContent = data.farmer.farmerCode;
+
+            infoBox.style.display = "flex";
+            fahm.style.display = "flex";
+
+            
+        } else {
+            btn.disabled = false;
+            btn.textContent = "confirm";
+            btn.style.cursor = "pointer"
+            const error = await response.json();
+                Toastify({
+                    text: `${error.error} for ${farmerCode} recheck the farmercode`,
+                    duration: 10000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+        }
+        } catch (error) {
+            btn.disabled = false;
+            btn.textContent = "Sign In";
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "An error occurred while fetching the farmer data.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "left",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+        }
+    }
+
+    const btn = document.querySelector(".bt1");
+
+    btn.addEventListener("click", async function(){
+        const amountPaid = document.getElementById("amountInput").value;
+        const farmerCode = document.getElementById("farmerCode").value;
+
     
-    button.addEventListener("click", function(event) {
-        event.preventDefault();  // Prevent the default anchor link behavior
+    localStorage.setItem('amountPaid', amountPaid);
+    localStorage.setItem('farmerCode', farmerCode);
 
-        // Show loading text and disable the button
-        button.classList.add("btn");
-        button.textContent = "Loading...";
-        button.disabled = true;
+        btn.textContent = "Processing...";
+        btn.disabled = true;
+        btn.style.cursor = "not-allowed"
 
-        // Fake async delay to simulate loading process
-        setTimeout(() => {
-            const farmerCode = farmerCodeInput.value;
-            const farmer = farmersDatabase[farmerCode];
+        const phonenum = document.querySelector('.phone').value;
+        const tk = localStorage.getItem('API_TOKEN')
 
-            if (farmer) {
-                // Display farmer data
-                document.getElementById("name").textContent = farmer.name;
-                document.getElementById("phone").textContent = farmer.phone;
-                document.getElementById("bank").textContent = farmer.bank;
-                document.getElementById("account").textContent = farmer.account;
-                document.getElementById("accountName").textContent = farmer.accountName;
-                document.getElementById("customerCode").textContent = farmer.customerCode;
-
-                infoBox.style.display = "flex";
-                farmData.style.display = "flex";
-            } else {
-                // Hide data if no farmer found
-                infoBox.style.display = "none";
-                farmData.style.display = "none";
+        try {
+            const response = await fetch("https://zaf-farm.onrender.com/farm-records/pay", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tk}`
+                },
+                body: JSON.stringify({
+                    phoneNumber: phonenum,
+                    amountPaid
+                })
+            })
+            if(response.ok){
+                btn.textContent = "Continue";
+                btn.disabled = false;
+                btn.style.cursor = "pointer"
+                const data = await response.json();
+                Toastify({
+                    text: `Payment successful for amount ${amountPaid} to ${phonenum}`,
+                    duration: 10000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #4cd137, #5ac8fa)"
+                    }
+                }).showToast(); 
+                window.location.href="../PaymentConfirmation/index.html";
+            }else{
+                btn.disabled = false;
+                btn.textContent = "Continue";
+                btn.style.cursor = "pointer"
+                const message = await response.json();
+                Toastify({
+                    text: `${message.error}`,
+                    duration: 10000,
+                    gravity: "top",
+                    position: "left",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
             }
-
-            // Reset the button text and enable the button
-            button.textContent = originalText;
-            button.disabled = false;
-        }, 1000);  // 1 second delay for simulation
-    });
-
-    // Farmer database for simulation
-    const farmersDatabase = {
-        "zaf_001": {
-            name: "Isiaka Bolaji",
-            phone: "08023856842",
-            bank: "Opay",
-            account: "8023856842",
-            accountName: "Isiaka Bolaji",
-            customerCode: "zaf_005"
+        } catch (error) {
+            btn.disabled = false;
+            btn.textContent = "Create Records";
+            btn.style.cursor = "pointer"
+            Toastify({
+                    text: `Can't fetch data ${error}, please try again`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
         }
-    };
-
-    // Auto-fetch data if the input value changes (like a `useEffect` dependency)
-    farmerCodeInput.addEventListener("input", function() {
-        button.textContent = originalText; // Reset button text when user types again
-        button.disabled = false;
-        infoBox.style.display = "none"; // Hide the info box when typing
-        farmData.style.display = "none"; // Hide farm data when typing
     });
-
-    amountInput.addEventListener('input', function(e) {
-            let value = amountInput.value.replace(/[^0-9]/g, ''); // numeric characters only
-            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Add commas for thousands
-            amountInput.value = value; // Update the input value
-        });
-
-        // Get the numeric value without commas for submission or processing
-        function getAmount() {
-            let rawValue = amountInput.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
-            return parseInt(rawValue, 10); // Return the numeric value
-        }
-
-        const continueButton = document.querySelector('.bt1');
-        continueButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log("Amount to be paid:", getAmount());
-            window.location.href = '../PaymentConfirmation/index.html';
-        }, { once: true });
-
-
-})
-
 </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 </html>
