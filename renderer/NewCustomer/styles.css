@@ -22,17 +22,22 @@ a{
 }
 .fahm{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     gap: 40px;
 }
 .farm-data{
     display: flex;
     gap: 180px;
 }
-.farm1, .farm2{
+.farm1{
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+.farm2{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .lb1{
@@ -191,7 +196,7 @@ a{
 .lb01{
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 35px;
 }
 .lb01 input{
     background-color: transparent;
@@ -208,7 +213,7 @@ a{
 .lb02{
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 5px;
 }
 .lb02 input{
     background-color: transparent;
@@ -225,7 +230,7 @@ a{
 .lb03{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 60px;
 }
 .lb03 input{
     background-color: transparent;
@@ -259,7 +264,7 @@ a{
 .lb05{
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 55px;
 }
 .lb05 input{
     background-color: transparent;
@@ -270,6 +275,23 @@ a{
     outline: none;
 }
 .lb05 p{
+    font-weight: bold;
+    font-size: 18px;
+}
+.lb06{
+    display: flex;
+    align-items: center;
+    gap: 90px;
+}
+.lb06 input{
+    background-color: transparent;
+    border: 1.5px solid black;
+    padding: 8px;
+    border-radius: 5px;
+    min-width: 50%;
+    outline: none;
+}
+.lb06 p{
     font-weight: bold;
     font-size: 18px;
 }

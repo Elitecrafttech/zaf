@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../FarmerInvoice/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
     
@@ -15,67 +16,28 @@
             <a href="../Records/index.html">
                 <img src="../asset/logo.png" alt="" height="60px">
             </a>
-            <p>Payment receipt for Isaiaka Bolaji</p>
+            <p>Payment receipt for <span>Isaiaka Bolaji</span></p>
             
         </div>
 
         <!-- Farmer Info Box -->
        <div class="info-box" id="infoBox">
-           <div>
-            <p><strong>Name:</strong></p>
-            <p id="name">Isiaka Bolaji</p>
-           </div>
-
-           <div>
-            <p><strong>Phone Number:</strong></p>
-            <p id="phone">08023856842</p>
-           </div>
-
-           <div>
-            <p><strong>Account Number:</strong></p>
-            <p id="account">8023856842</p>
-           </div>
-
-           <div>
-            <p><strong>Account Name:</strong></p>
-            <p id="accountName">Isiaka Bolaji</p>
-           </div>
-
-           <div>
-            <p><strong>Customer Code:</strong></p>
-            <p id="customerCode">zaf_005</p>
-           </div>
-
-           <div>
-            <p><strong>Amount Paid:</strong></p>
-            <p id="amountPaid">₦500,000.00</p>
-           </div>
-
-           <div>
-            <p><strong>Payment Date:</strong></p>
-            <p id="PaymentDate">15/01/2025</p>
-           </div>
-
-           <div>
-            <p><strong>Purpose:</strong></p>
-            <p id="purpose">Purchase of birds</p>
-           </div>
-
-           <div>
-            <p><strong>Reference:</strong></p>
-            <p id="ref">5gw6uywuy</p>
-           </div>
-
-           <div>
-            <p><strong>Remaining balance:</strong></p>
-            <p id="RemBal">₦0.00</p>
-           </div>
+        <div class="userbx"><strong>Name:</strong><span id="name">Isiaka Bolaji</span></div>
+        <div class="userbx"><strong>Phone Number:</strong><span id="phone">08023856842</span></div>
+        <div class="userbx"><strong>Account Number:</strong><span id="account">8023856842</span></div>
+        <div class="userbx"><strong>Account Name:</strong><span id="accountName">Isiaka Bolaji</span></div>
+        <div class="userbx"><strong>Customer Code:</strong><span id="customerCode">zaf_005</span></div>
+        <div class="userbx"><strong>Amount Paid:</strong><span id="amountPaid">₦500,000.00</span></div>
+        <div class="userbx"><strong>Payment Date:</strong><span id="PaymentDate">15/01/2025</span></div>
+        <div class="userbx"><strong>Purpose:</strong><span id="purpose">Purchase of birds</span></div>
+        <div class="userbx"><strong>Reference:</strong><span id="ref">5gw6uywuy</span></div>
+        <div class="userbx"><strong>Remaining balance:</strong><span id="RemBal">₦0.00</span></div>
        </div>
 
             <div class="allbt">
-                <a href="../Signin/index.html">
+                <!-- <a href="../Signin/index.html"> -->
                     <button class="bt1">BackToHome</button>
-                </a>
+                <!-- </a> -->
             </div>
         </div>
         </div>
@@ -84,4 +46,5 @@
 
     </main>
 </body>
+<script></script>
 </html>

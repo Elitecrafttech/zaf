@@ -11,10 +11,15 @@
     </head>
 <body>
     <main class="main-index">
-        <div class="logo">
-            <a href="../CreateForExisting/index.html"><img src="../asset/logo.png" alt=""></a>
-            <p>Farm Records</p>
+        <div class="bck">
+            <a href="../CreateForExisting/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
+
+            <div class="logo">
+                <img src="../asset/logo.png" alt="" height="px">
+                <p>Farm Records</p>
+            </div>
         </div>
+
         <div class="main-div">
             <div class="allbt">
                 <a href="../SingleRecord/index.html">
@@ -64,7 +69,7 @@
             const jsonResponse = await response.json();
              const records = jsonResponse.data; 
 
-            if (!Array.isArray(records)) {
+            if (!Array.isArray(records.reverse())) {
                 console.error("Error: Expected an array but got", records);
                 return;
             }
