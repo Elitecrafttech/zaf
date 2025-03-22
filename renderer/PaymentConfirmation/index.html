@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <link rel="stylesheet" href="../PaymentConfirmation/styles.css">
         <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
     
@@ -11,39 +12,59 @@
     </head>
 <body>
     <main class="main-index">
-        <div class="logo">
-            <a href=""><img src="../asset/logo.png" alt=""></a>
-            <p>Success !!!</p>
+        <div class="bck">
+            <a href="../PayFarmer/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
+
+            <div class="logo">
+                <img src="../asset/logo.png" alt="" height="100px">
+                <p>Success !!!</p>
+            </div>
         </div>
+ 
         <div class="main-div">
             <div class="content">
                 Your payment of <span class="price"></span> was successful and has been confirmed. <span class="name"></span> will get it in their bank now.
             </div>
 
             <div class="allbt">
-                <a href="../FarmerInvoice/index.html">
+                <!-- <a href=""> -->
                     <button class="bt1">Generate receipt</button>
-                </a>
-                <a href="../PayFarmer/index.html">
+                <!-- </a> -->
+                <!-- <a href=""> -->
                     <button class="bt2">Pay another person</button>
-                </a>
+                <!-- </a> -->
             </div>
             
         </div>
     </main>
 </body>
 <script>
-    // localStorage.getItem("amountPaid");
-    // // localStorage.getItem("farmerCode");
-    // localStorage.getItem("name");
 
     const price = document.querySelector(".price");
-    const name = document.querySelector(".name");
+    const fname = document.querySelector(".name");
 
     price.textContent = localStorage.getItem("amountPaid");
-    name.textContent = localStorage.getItem("name");
+    fname.textContent = localStorage.getItem("name");
 
-    // const
+        const bt1 = document.querySelector(".bt1");
+        const bt2 = document.querySelector(".bt2");
+
+        bt1.addEventListener("click", () => {
+            localStorage.removeItem("amountPaid");
+            localStorage.removeItem("name");
+            window.location.href = "../FarmerInvoice/index.html";
+        });
+
+    bt2.addEventListener("click", ()=>{
+        localStorage.removeItem("amountPaid");
+        localStorage.removeItem("name");
+        window.location.href = "../PayFarmer/index.html";
+    })
+
+
+
+    
+
 </script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </html>

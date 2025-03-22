@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="../PayFarmer/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
+    
+    <title>track single pay </title>
+</head>
+<body>
+    <main class="main-reg">
+        <div class="bck">
+            <a href="../OustandingRecord/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
+
+            <div class="top">
+                <img src="../asset/logo.png" alt="" height="100px">
+            </div>
+        </div>
+
+        <div class="form">
+            <div class="top"> <a href="../PaymentHistory/index.html">Farm Records</a></div>
+
+            <label class="namelab" for=""> 
+                <div class="hd">Farmer’s Code </div>
+                <input class="inp" type="text" name="name" id="farmerCode" value="zaf_001" placeholder="Enter Farmer’s code">
+                    <button class="btn" onclick="userdetail()">confirm</button>
+            </label>
+        </div>
+    </main>
+</body>
+<script>
+    async function userdetail() {
+        const farmerCode = document.getElementById("farmerCode").value
+        const btn = document.querySelector(".btn");
+        btn.textContent = "Checking...";
+        btn.disabled = true;
+        btn.style.cursor = "not-allowed"
+        
+        try {
+            const response = await fetch(`https://zaf-farm.onrender.com/farmer/${farmerCode}`)
+            if (response.ok ) {
+                const data = await response.json();
+                btn.textContent = "confirm";
+                btn.disabled = false;
+                btn.style.cursor = "pointer"
+
+            const nm = data.farmer.name;
+            // console.log(nm);
+            const tel = data.farmer.phoneNumber;
+            // console.log(tel);
+
+            localStorage.setItem("name", nm);
+            localStorage.setItem("phoneNum", tel);
+            
+                // const phoneInput = document.querySelector('.phone');
+                // phoneInput.value = tel;
+
+            Toastify({
+                    text: `Check payment of Farmer with the name of ${nm} &  ${tel}`,
+                    duration: 19000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #00b09b, #96c93d)"
+                    }
+                }).showToast();
+                
+                // setTimeout(() => {
+                //     window.location.href = '../PaymentHistory/index.html';
+                // }, 10000);
+
+            
+        } else {
+            btn.disabled = false;
+            btn.textContent = "confirm";
+            btn.style.cursor = "pointer"
+            const error = await response.json();
+                Toastify({
+                    text: `${error.error}`,
+                    duration: 10000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+        }
+        } catch (error) {
+            btn.disabled = false;
+            btn.textContent = "Confirm";
+            btn.style.cursor = "pointer"
+
+            Toastify({
+                    text: "An error occurred while fetching the farmer data.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "left",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
+        }
+    }
+
+    // const btn = document.querySelector(".bt1");
+
+    // btn.addEventListener("click", async function(){
+    //     const amountPaid = document.getElementById("amountInput").value;
+    //     const farmerCode = document.getElementById("farmerCode").value;
+
+    
+    // localStorage.setItem('amountPaid', amountPaid);
+    // localStorage.setItem('farmerCode', farmerCode);
+
+    //     btn.textContent = "Processing...";
+    //     btn.disabled = true;
+    //     btn.style.cursor = "not-allowed"
+
+    //     const phonenum = document.querySelector('.phone').value;
+    //     const tk = localStorage.getItem('API_TOKEN')
+
+    //     try {
+    //         const response = await fetch("https://zaf-farm.onrender.com/farm-records/pay", {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${tk}`
+    //             },
+    //             body: JSON.stringify({
+    //                 phoneNumber: phonenum,
+    //                 amountPaid
+    //             })
+    //         })
+    //         if(response.ok){
+    //             btn.textContent = "Continue";
+    //             btn.disabled = false;
+    //             btn.style.cursor = "pointer"
+    //             const data = await response.json();
+    //             Toastify({
+    //                 text: `Payment successful for amount ${amountPaid} to ${phonenum}`,
+    //                 duration: 10000,
+    //                 gravity: "top",
+    //                 position: "center",
+    //                 style: {
+    //                     background: "linear-gradient(to right, #4cd137, #5ac8fa)"
+    //                 }
+    //             }).showToast(); 
+    //             window.location.href="../PaymentConfirmation/index.html";
+    //         }else{
+    //             btn.disabled = false;
+    //             btn.textContent = "Continue";
+    //             btn.style.cursor = "pointer"
+    //             const message = await response.json();
+    //             Toastify({
+    //                 text: `${message.error}`,
+    //                 duration: 10000,
+    //                 gravity: "top",
+    //                 position: "left",
+    //                 style: {
+    //                     background: "linear-gradient(to right, #ff6b6b, #c23616)"
+    //                 }
+    //             }).showToast();
+    //         }
+    //     } catch (error) {
+    //         btn.disabled = false;
+    //         btn.textContent = "Create Records";
+    //         btn.style.cursor = "pointer"
+    //         Toastify({
+    //                 text: `Can't fetch data ${error}, please try again`,
+    //                 duration: 3000,
+    //                 gravity: "top",
+    //                 position: "center",
+    //                 style: {
+    //                     background: "linear-gradient(to right, #ff6b6b, #c23616)"
+    //                 }
+    //             }).showToast();
+    //     }
+    // });
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</html>

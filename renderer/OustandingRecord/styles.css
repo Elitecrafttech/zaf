@@ -13,6 +13,10 @@ a{
     min-height: 100vh;
     gap: 50px;
 }
+.bck{
+    display: flex;
+    align-items: center;
+}
 .logo{
     padding-left: 80px;
     display: flex;
@@ -30,12 +34,13 @@ a{
     justify-content: center;
     flex-direction: column;
     gap: 100px;
+    padding-bottom: 60px;
 }
-.allbt{
+/* .allbt{
     display: flex;
     align-items: center;
     gap: 40px;
-}
+} */
 .bt1{
     border: none;
     background-color: black;
@@ -46,37 +51,50 @@ a{
     font-weight: bold;
 }
 .bt2{
-    border: none;
-    background-color: #CF7373;
+    border: 2px solid black;
+    background-color: transparent;
     padding: 8px 20px;
     border-radius: 5px;
     font-size: 13px;
-    color: white;
     font-weight: bold;
 }
+
 .alltb {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
-    border-spacing: 5px; 
+    display: block; 
+    max-width: 100%;
+    overflow-x: auto;
+    border-spacing: 5px;
     background-color: #f4f4f4;
     font-family: Arial, sans-serif;
+    padding-bottom: 30px;
+}
+
+.alltb table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .alltb th {
-    background-color: #39693b; 
+    background-color: #39693b;
     color: white;
-    /* padding: 10px;  */
+    padding: 10px;
     text-align: left;
     border-radius: 5px;
+    position: sticky;
+    top: 0; 
+    z-index: 1; 
+    white-space: nowrap;
 }
+
+
 .alltb td {
     background-color: white;
-    /* padding: 10px;  */
-    border-radius: 5px; 
-    text-align: left; 
+    padding: 10px 50px;
+    border-radius: 5px;
+    text-align: left;
+    white-space: nowrap;
 }
+
 
 .alltb tr:hover {
     cursor: pointer; 
@@ -85,4 +103,12 @@ a{
 .alltb th, .alltb td {
     border: 1px solid #ddd;
     border-radius: 5px; 
+}
+.alltb::-webkit-scrollbar {
+    height: 5px; 
+}
+
+.alltb::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
 }

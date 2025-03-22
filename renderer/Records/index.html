@@ -15,7 +15,7 @@
             <a href="../CreateForExisting/index.html" style="display: inline-block; margin: 0.25em; border: 1px solid silver; border-radius: 0.25em; padding: .25em 0.5em"><img src="../asset/back.png" alt=""></a>
 
             <div class="logo">
-                <img src="../asset/logo.png" alt="" height="px">
+                <img src="../asset/logo.png" alt="" >
                 <p>Farm Records</p>
             </div>
         </div>
@@ -39,7 +39,7 @@
                   <th>Bank</th>
                   <th>No of birds</th>
                   <th>Total KG</th>
-                  <th>Create KG</th>
+                  <th>Crate KG</th>
                   <th>Crop</th>
                   <th>Actual KG</th>
                   <th>Price per KG</th>
@@ -89,8 +89,8 @@
                     <td>${record.totalKG || "-"}</td>
                     <td>${record.createKG || "-"}</td>
                     <td>${record.crop || "-"}</td>
-                    <td>${record.actualKG || "-"}</td>
-                    <td>${record.pricePerKG || "-"}</td>      
+                    <td>${record.actualKG || "-"}</td>     
+                    <td>${record.pricePerKG ? record.pricePerKG.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>       
                     <td>${record.amount ? record.amount.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>       
                     <td>${record.amountPaid ? record.amountPaid.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
                     <td>${record.balance ? record.balance.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
