@@ -31,30 +31,38 @@ a{
     /* justify-content: center; */
     flex-direction: column;
     gap: 100px;
+    padding-bottom: 60px;
 }
 .alltbl {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
-    border-spacing: 5px; 
+    display: block; 
+    max-width: 100%;
+    overflow-x: auto;
+    border-spacing: 5px;
     background-color: #f4f4f4;
     font-family: Arial, sans-serif;
-    border: 1.5px solid black;
-    border-radius: 5px;
+    padding-bottom: 30px;
+}
+.alltbl table {
+    width: 100%;
+    border-collapse: collapse;
 }
 .alltbl th {
-    background-color: #39693b; 
+    background-color: #39693b;
     color: white;
-    padding: 10px; 
+    padding: 10px;
     text-align: left;
     border-radius: 5px;
+    position: sticky;
+    top: 0; 
+    z-index: 1; 
+    white-space: nowrap;
 }
 .alltbl td {
     background-color: white;
-    padding: 10px; 
+    padding: 10px 30px;
     border-radius: 5px; 
     text-align: left; 
+    white-space: nowrap;
 }
 
 .alltbl tr:hover {
@@ -83,4 +91,17 @@ a{
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
+}
+.alltbl::-webkit-scrollbar {
+    height: 5px; 
+}
+
+.alltbl::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+.rcp{
+    border: none;
+    background-color: transparent;
+    color: rgb(214, 116, 116);
 }

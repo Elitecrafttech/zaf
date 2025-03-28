@@ -102,6 +102,15 @@
             })
         } catch (error) {
             console.error("Error fetching data:", error);
+            Toastify({
+                    text: `Can't fetch data ${error}, check your connection`,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "center",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
         }
     });
 </script>

@@ -104,7 +104,16 @@
             })
             
         } catch (error) {
-            
+
+            Toastify({
+                    text: "An error occurred while fetching the farmer data.",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "left",
+                    style: {
+                        background: "linear-gradient(to right, #ff6b6b, #c23616)"
+                    }
+                }).showToast();
         }
     })
 </script>

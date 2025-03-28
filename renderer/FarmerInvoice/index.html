@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../FarmerInvoice/styles.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet'>
-    
     <title>Farmers Invoice</title>
 </head>
 <body>
@@ -16,25 +15,30 @@
             <a href="../Records/index.html">
                 <img src="../asset/logo.png" alt="" height="60px">
             </a>
-            <p>Payment receipt for <span>Isaiaka Bolaji</span></p>
+            <p>Payment receipt for <span>--</span></p>
             
         </div>
 
         <!-- Farmer Info Box -->
-       <div class="info-box" id="infoBox">
-        <div class="userbx"><strong>Name:</strong><span id="name">Isiaka Bolaji</span></div>
-        <div class="userbx"><strong>Phone Number:</strong><span id="phone">08023856842</span></div>
-        <div class="userbx"><strong>Account Number:</strong><span id="account">8023856842</span></div>
-        <div class="userbx"><strong>Account Name:</strong><span id="accountName">Isiaka Bolaji</span></div>
-        <div class="userbx"><strong>Customer Code:</strong><span id="customerCode">zaf_005</span></div>
-        <div class="userbx"><strong>Amount Paid:</strong><span id="amountPaid">₦500,000.00</span></div>
-        <div class="userbx"><strong>Payment Date:</strong><span id="PaymentDate">15/01/2025</span></div>
-        <div class="userbx"><strong>Purpose:</strong><span id="purpose">Purchase of birds</span></div>
-        <div class="userbx"><strong>Reference:</strong><span id="ref">5gw6uywuy</span></div>
-        <div class="userbx"><strong>Remaining balance:</strong><span id="RemBal">₦0.00</span></div>
+       <div class="info-box" id="receipt-container">
+        <div class="userbx"><strong>Name:</strong><span id="name">--</span></div>
+        <div class="userbx"><strong>Phone Number:</strong><span id="phone">--</span></div>
+        <div class="userbx"><strong>Account Number:</strong><span id="account">--</span></div>
+        <div class="userbx"><strong>Account Name:</strong><span id="accountName">--</span></div>
+        <div class="userbx"><strong>Customer Code:</strong><span id="customerCode">--</span></div>
+        <div class="userbx"><strong>Amount Paid:</strong><span id="amountPaid">--</span></div>
+        <div class="userbx"><strong>Payment Date:</strong><span id="paymentDate">--</span></div>
+        <div class="userbx"><strong>Receipt Number:</strong><span id="receiptNumber">--</span></div>
+        <div class="userbx"><strong>Balance Before:</strong><span id="balanceBefore">--</span></div>
+        <div class="userbx"><strong>Balance After:</strong><span id="balanceAfter">--</span></div>
+        <div>
+            <button onclick="downloadReceiptPDF()">Download as PDF</button>
+            <button id="downloadImageBtn">Download as Image</button>
+        </div>
+        <!-- <button onclick="goBack()">Back</button> -->
        </div>
 
-            <div class="allbt">
+            <div class="allbt" onclick=" goBack()">
                 <!-- <a href="../Signin/index.html"> -->
                     <button class="bt1">BackToHome</button>
                 <!-- </a> -->
@@ -46,5 +50,85 @@
 
     </main>
 </body>
-<script></script>
+
+<!-- cdn for pdf download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+<!-- cdn for image download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script>
+    console.log("html2canvas:", typeof html2canvas);
+    console.log("jsPDF:", window.jspdf);
+    document.addEventListener("DOMContentLoaded", function() {
+        const receiptData = JSON.parse(localStorage.getItem("selectedReceipt"));
+
+        if (receiptData) {
+            document.getElementById("name").textContent = receiptData.name || "-";
+            document.getElementById("phone").textContent = receiptData.phone || "-";
+            document.getElementById("account").textContent = receiptData.account || "-";
+            document.getElementById("accountName").textContent = receiptData.accountName || "-";
+            document.getElementById("customerCode").textContent = receiptData.customerCode || "-";
+            document.getElementById("paymentDate").textContent = receiptData.paymentDate ? new Date(receiptData.paymentDate).toLocaleDateString() : "-";
+            document.getElementById("receiptNumber").textContent = receiptData.receiptNumber || "-";
+            document.getElementById("amountPaid").textContent = receiptData.amountPaid ? receiptData.amountPaid.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-";
+            document.getElementById("balanceBefore").textContent = receiptData.balanceBefore ? receiptData.balanceBefore.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-";
+            document.getElementById("balanceAfter").textContent = receiptData.balanceAfter ? receiptData.balanceAfter.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-";
+        } else {
+            document.getElementById("receipt-container").innerHTML = "<p>No receipt data found.</p>";
+        }
+    });
+
+    function downloadReceiptPDF() {
+    if (!window.jspdf) {
+        console.error("jsPDF is not loaded");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf; // Correct way to destructure
+    const doc = new jsPDF();
+
+    const receiptData = JSON.parse(localStorage.getItem("selectedReceipt"));
+    if (!receiptData) {
+        alert("No receipt data found.");
+        return;
+    }
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Payment Receipt", 80, 20);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Payment Date: ${receiptData.paymentDate ? new Date(receiptData.paymentDate).toLocaleDateString() : "-"}`, 20, 40);
+    doc.text(`Name: ${receiptData.name || "-"}`, 20, 50);
+    doc.text(`Receipt Number: ${receiptData.receiptNumber || "-"}`, 20, 60);
+    doc.text(`Amount Paid: ${receiptData.amountPaid ? receiptData.amountPaid.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}`, 20, 70);
+    doc.text(`Balance Before: ${receiptData.balanceBefore ? receiptData.balanceBefore.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}`, 20, 80);
+    doc.text(`Balance After: ${receiptData.balanceAfter ? receiptData.balanceAfter.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}`, 20, 90);
+
+    doc.save(`Receipt_${receiptData.receiptNumber || "unknown"}.pdf`);
+}
+
+
+    document.getElementById("downloadImageBtn").addEventListener("click", downloadReceiptImage);
+
+    function downloadReceiptImage() {
+        const receiptContainer = document.getElementById("receipt-container");
+
+        html2canvas(receiptContainer, { scale: 2 }).then((canvas) => {
+            const link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = `Receipt_${new Date().getTime()}.png`;
+            link.click();
+        }).catch(error => console.error("Error capturing image:", error));
+    }
+
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </html>
