@@ -48,12 +48,17 @@
                 btn.style.cursor = "pointer"
 
             const nm = data.farmer.name;
-            // console.log(nm);
             const tel = data.farmer.phoneNumber;
-            // console.log(tel);
+            const accn = data.farmer.accountNumber;
+            const acnam = data.farmer.accountName;
+            const code = data.farmer.farmerCode;;
+
 
             localStorage.setItem("name", nm);
             localStorage.setItem("phoneNum", tel);
+            localStorage.setItem("accNum", accn);
+            localStorage.setItem("accName", acnam);
+            localStorage.setItem("fcode", code);
             
                 // const phoneInput = document.querySelector('.phone');
                 // phoneInput.value = tel;

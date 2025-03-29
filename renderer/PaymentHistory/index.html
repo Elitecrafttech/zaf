@@ -47,6 +47,9 @@
         const tk = localStorage.getItem('API_TOKEN')
         const UName = localStorage.getItem('name')
         const phone = localStorage.getItem('phoneNum')
+        const accountNumber = localStorage.getItem('accNum')
+        const accountName = localStorage.getItem('accName')
+        const customerCode = localStorage.getItem('fcode')
 
         nam.textContent = UName;
         try {
@@ -69,6 +72,14 @@
             const table = document.querySelector(".alltbl");
 
             history.forEach((history)=>{
+
+                const historyWithDetails = {
+                ...history,
+                phone,
+                accountNumber,
+                accountName,
+                customerCode
+            };
                 const row = document.createElement("tr");
                 row.innerHTML = `
                 <td>${history.paymentDate? new Date(history.paymentDate).toLocaleDateString() : "-"}</td>
@@ -77,15 +88,19 @@
                 <td>${history.amountPaid ? history.amountPaid.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
                 <td>${history.balanceBefore ? history.balanceBefore.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
                 <td>${history.balanceAfter ? history.balanceAfter.toLocaleString('en-NG', { style: 'currency', currency: 'NGN' }) : "-"}</td>
-                <td><button class='rcp' data-receipt='${JSON.stringify(history)}'>View Receipt</button></td>
-               
+                <td><button class='rcp' data-receipt='${JSON.stringify(historyWithDetails)}'>View Receipt</button></td>
+                
                 `;
+                // <td><button class='rcp' data-receipt='${JSON.stringify(history)}'>View Receipt</button></td>
                 table.appendChild(row);
             })
             document.querySelectorAll(".rcp").forEach((btn) => {
                 btn.addEventListener("click", function () {
+                    // localStorage.removeItem('phoneNum');
+                    // localStorage.removeItem('fcode');
                     const receiptData = this.getAttribute("data-receipt");
                     localStorage.setItem("selectedReceipt", receiptData);
+                    
                     window.location.href = "../FarmerInvoice/index.html";
                 });
             });

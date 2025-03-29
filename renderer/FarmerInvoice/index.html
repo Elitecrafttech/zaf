@@ -11,12 +11,16 @@
 </head>
 <body>
     <main class="main-reg">
-        <div class="top">
-            <a href="../Records/index.html">
-                <img src="../asset/logo.png" alt="" height="60px">
-            </a>
-            <p>Payment receipt for <span>--</span></p>
-            
+        <div class="bck">
+            <div onclick=" goBack()" class="back">
+                <img src="../asset/back.png" alt="">
+            </div>
+
+            <div class="top">
+                <img src="../asset/logo.png" alt="" height="100px">
+            <p>Payment receipt for <span class="name">--</span></p>
+
+            </div>
         </div>
 
         <!-- Farmer Info Box -->
@@ -31,15 +35,14 @@
         <div class="userbx"><strong>Receipt Number:</strong><span id="receiptNumber">--</span></div>
         <div class="userbx"><strong>Balance Before:</strong><span id="balanceBefore">--</span></div>
         <div class="userbx"><strong>Balance After:</strong><span id="balanceAfter">--</span></div>
-        <div>
+        <div class="dwnld">
             <button onclick="downloadReceiptPDF()">Download as PDF</button>
             <button id="downloadImageBtn">Download as Image</button>
         </div>
-        <!-- <button onclick="goBack()">Back</button> -->
        </div>
 
-            <div class="allbt" onclick=" goBack()">
-                <!-- <a href="../Signin/index.html"> -->
+            <div onclick="Home()" class="allbt">
+                <!-- <a href=""> -->
                     <button class="bt1">BackToHome</button>
                 <!-- </a> -->
             </div>
@@ -63,12 +66,16 @@
     console.log("html2canvas:", typeof html2canvas);
     console.log("jsPDF:", window.jspdf);
     document.addEventListener("DOMContentLoaded", function() {
+        const Uname = document.querySelector(".name")
         const receiptData = JSON.parse(localStorage.getItem("selectedReceipt"));
 
+        Uname.textContent = receiptData.name
+
         if (receiptData) {
+
             document.getElementById("name").textContent = receiptData.name || "-";
             document.getElementById("phone").textContent = receiptData.phone || "-";
-            document.getElementById("account").textContent = receiptData.account || "-";
+            document.getElementById("account").textContent = receiptData.accountNumber || "-";
             document.getElementById("accountName").textContent = receiptData.accountName || "-";
             document.getElementById("customerCode").textContent = receiptData.customerCode || "-";
             document.getElementById("paymentDate").textContent = receiptData.paymentDate ? new Date(receiptData.paymentDate).toLocaleDateString() : "-";
@@ -129,6 +136,15 @@
 
     function goBack() {
         window.history.back();
+    }
+    function Home() {
+        localStorage.removeItem('selectedReceipt')
+        localStorage.removeItem('name')
+        localStorage.removeItem('phoneNum')
+        localStorage.removeItem('accNum')
+        localStorage.removeItem('accName')
+        localStorage.removeItem('fcode')
+        window.location.href = "../Stock/index.html"
     }
 </script>
 </html>
