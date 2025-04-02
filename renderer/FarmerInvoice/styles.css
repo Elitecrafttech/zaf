@@ -61,6 +61,29 @@ a{
     justify-content: center;
     gap: 30px;
 }
+.dwnld{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.pdf{
+    border: none;
+    background-color: black;
+    padding: 8px 30px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+.imag{
+    border: none;
+    background-color: #CF7373;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+}
 .allbt{
     display: flex;
     align-items: center;

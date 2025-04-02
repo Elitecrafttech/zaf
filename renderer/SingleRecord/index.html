@@ -118,7 +118,7 @@
                 
                 maindiv.style.display = "flex";
                 const data = await response.json()
-                console.log(data);
+                // console.log(data);
                 tablerow.innerHTML = `
                     <td>${data.data.date ? new Date(data.data.date).toLocaleDateString() : "-"}</td>
                     <td>${data.data.details || "-"}</td>
@@ -145,7 +145,7 @@
                 btn.style.cursor = "pointer"
 
                 const message = await response.json();
-                console.log(message);
+                // console.log(message);
 
                 Toastify({
                     text: `${message.error}`,
