@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../By-Productdir/style.css">
-    <title>By-Product</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Production Summary</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <img src="../asset/logo.png" alt="">
-        <h1>Production Summary</h1>
+  <main class="container">
+    <!-- Back Button -->
+    <div class="back-button">
+      <a href="../Productiondir/index.html">
+        <img src="../asset/back.png" alt="Back" />
+      </a>
     </div>
-    
+
+    <!-- Header -->
+    <div class="header">
+      <img src="../asset/logo.png" alt="Logo" class="logo" />
+      <h1>Production Summary</h1>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Items</th>
+            <th>Quantity/PCS</th>
+            <th>Weight (KG)</th>
+            <th>% Yield</th>
+          </tr>
+        </thead>
+        <tbody id="byProductBody">
+          <!-- JS will inject rows here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

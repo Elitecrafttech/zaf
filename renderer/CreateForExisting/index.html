@@ -24,8 +24,8 @@
             <div class="top"><a href="../Records/index.html">Farm Records</a></div>
 
             <label class="namelab" for=""> 
-                <div class="hd">Farmer’s Code </div>
-                <input class="inp" type="text" name="name" id="farmerCode" value="zaf_001" placeholder="Enter Farmer’s code">
+                <div class="hd">Farmer’s Number </div>
+                <input class="inp" type="text" name="name" id="farmerCode"  placeholder="Enter Farmer’s Phone Number">
                 <!-- <a href="" id="confirmBtn"> -->
                     <button class="btn" onclick="userInfo()">confirm</button>
                 <!-- </a> -->
@@ -191,7 +191,7 @@
         }
         } catch (error) {
             btn.disabled = false;
-            btn.textContent = "Sign In";
+            btn.textContent = "Confirm";
             btn.style.cursor = "pointer"
 
             Toastify({
@@ -244,6 +244,7 @@
                 },
                 body: JSON.stringify({
                     farmerCode:code,
+                    phoneNumber:code,
                     details,
                     totalKG: actValu,
                     crop,

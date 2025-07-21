@@ -26,10 +26,11 @@ body{
     height: 100vh;
     background-color: white;
 }
-.all{
+.all {
+    position: relative; /* Add this */
     width: 90%;
     height: 90vh;
-    background-color:#d2c5c5;
+    background-color: #d2c5c5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,7 +39,30 @@ body{
     border: 3px solid black;
     border-radius: 7px;
 }
+
 .but{
     display: flex;
     gap: 350px;
+}
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+
+.back-button a {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+.back-button img {
+  width: 38px;
+  height: auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
 }

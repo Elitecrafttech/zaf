@@ -42,6 +42,7 @@ form{
     margin: 20px;
 }
 .all{
+     position: relative;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -51,4 +52,16 @@ form{
 }
 img{
     width: 90px;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-button img {
+  width: 38px;
+  height: auto;
+  cursor: pointer;
 }
