@@ -62,8 +62,9 @@ addRecordBtn.addEventListener('click', async () => {
   const category = document.getElementById('category').value;
   const quantity = parseFloat(document.getElementById('quantity').value);
   const weight = parseFloat(document.getElementById('weight').value);
+  const dressedWeight = parseFloat(document.getElementById('dressedWeightt').value);
 
-  if (!category || isNaN(quantity) || isNaN(weight)) {
+  if (!category || isNaN(quantity) || isNaN(weight) || isNaN(dressedWeight)) {
     alert("Please fill all fields with valid numbers.");
     return;
   }
@@ -75,7 +76,7 @@ addRecordBtn.addEventListener('click', async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ category, quantity, weight }),
+      body: JSON.stringify({ category, quantity, weight, dressedWeight }),
     });
 
     if (!postResponse.ok) {
@@ -90,6 +91,7 @@ addRecordBtn.addEventListener('click', async () => {
     document.getElementById('category').value = '';
     document.getElementById('quantity').value = '';
     document.getElementById('weight').value = '';
+    document.getElementById('dressedWeightt').value = '';
 
   } catch (error) {
     console.error("Error:", error.message);
