@@ -20,22 +20,6 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.back-button {
-  margin-bottom: 1.5rem;
-}
-
-.back-button a {
-  display: inline-block;
-  padding: 0.3rem 0.6rem;
-  border: 1px solid silver;
-  border-radius: 5px;
-}
-
-.back-button img {
-  width: 36px;
-  height: auto;
-}
-
 .header {
   text-align: center;
   margin-bottom: 2rem;
@@ -49,7 +33,6 @@ body {
 
 h1 {
   font-size: 1.8rem;
-  font-weight: bold;
 }
 
 .table-wrapper {
@@ -79,4 +62,70 @@ th {
 
 tbody tr:nth-child(even) {
   background-color: #fcfcfc;
+}
+
+.back-button {
+  margin-bottom: 1.5rem;
+}
+
+.back-button a {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+.back-button img {
+  width: 38px;
+  height: auto;
+}
+
+.summary-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: flex-end;
+}
+
+.summary-inputs div {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.summary-inputs input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#category {
+  
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.summary-inputs span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.submit-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #2b7a78;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1.2rem;
+}
+
+.submit-btn:hover {
+  background-color: #205e5c;
 }

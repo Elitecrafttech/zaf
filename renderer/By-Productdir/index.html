@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Production Summary</title>
+  <title>Production By Product</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 </head>
 <body>
   <main class="container">
+
     <!-- Back Button -->
     <div class="back-button">
       <a href="../Productiondir/index.html">
@@ -20,8 +21,60 @@
     <!-- Header -->
     <div class="header">
       <img src="../asset/logo.png" alt="Logo" class="logo" />
-      <h1>Production Summary</h1>
+      <h1>Production By-Product Summary</h1>
     </div>
+
+    <!-- Inputs -->
+    <div class="summary-inputs">
+      <div>
+        <label for="liveWeight">Live Weight (KG):</label>
+        <input type="number" id="liveWeight" />
+      </div>
+      <div>
+        <label for="dressedWeight">Dressed Weight (KG):</label>
+        <input type="number" id="dressedWeight" disabled value="0" />
+      </div>
+      <div>
+        <label>RET WT %:</label>
+        <span id="retWt">0%</span>
+      </div>
+      <div>
+        <label>Average Live Weight:</label>
+        <span id="avgLiveWeight">0</span>
+      </div>
+    </div>
+
+    <!-- Production Entry Form -->
+<div class="summary-inputs">
+  <div>
+  <label for="category">Category:</label>
+  <select id="category" name="category">
+    <option value="" disabled selected>Select a category</option>
+    <option value="Head and Feet">Head and Feet</option>
+    <option value="Neck">Neck</option>
+    <option value="Liver and Heart">Liver and Heart</option>
+    <option value="Gizzards">Gizzards</option>
+    <option value="Fats">Fats</option>
+    <option value="Intestine">Intestine</option>
+  </select>
+</div>
+  <div>
+    <label for="quantity">Quantity / PCS:</label>
+    <input type="number" id="quantity" placeholder="e.g., 20" />
+  </div>
+  <div>
+    <label for="weight">Weight (KG):</label>
+    <input type="number" id="weight" placeholder="e.g., 15" />
+  </div>
+  <div>
+    <label for="dressedWeight">Dressed Weight (KG):</label>
+    <input type="number" id="dressedWeightt" placeholder="e.g., 10" />
+  </div>
+  <div style="align-self: flex-end;">
+    <button id="addRecordBtn" class="submit-btn">Save Record</button>
+  </div>
+</div>
+
 
     <!-- Table -->
     <div class="table-wrapper">
@@ -29,15 +82,26 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Items</th>
+            <th>Categories</th>
             <th>Quantity/PCS</th>
             <th>Weight (KG)</th>
-            <th>% Yield</th>
+            <th>Product Ratio</th>
           </tr>
         </thead>
-        <tbody id="byProductBody">
-          <!-- JS will inject rows here -->
+        <tbody id="summaryBody">
+          <!-- Rows inserted by JS -->
         </tbody>
+
+        <tfoot>
+  <tr>
+    <td></td>
+    <td style="font-weight: bold;">Total</td>
+    <td id="totalQuantity">0</td>
+    <td id="totalWeight">0</td>
+    <td id="totalRatio">0%</td>
+  </tr>
+</tfoot>
+
       </table>
     </div>
   </main>

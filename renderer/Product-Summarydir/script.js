@@ -27,6 +27,9 @@ const fetchAndRenderRecords = async () => {
       totalWeight += Number(record.weight);
       totalRatio += numericRatio;
 
+  document.getElementById('dressedWeight').value = totalWeight;
+
+
       const ratioFormatted = record.ratio.toString().includes('%') ? record.ratio : numericRatio.toFixed(2) + '%';
 
       const row = `
@@ -34,7 +37,7 @@ const fetchAndRenderRecords = async () => {
           <td>${index + 1}</td>
           <td>${record.category}</td>
           <td>${record.quantity}</td>
-          <td>${record.weight}</td>
+          <td>${record.dressedWeight}</td>
           <td>${ratioFormatted}</td>
         </tr>
       `;
@@ -110,7 +113,7 @@ function calculate() {
   const dressed = parseFloat(dressedInput.value) || 0;
 
   // Return Weight %
-  const ret = live ? (dressed / live).toFixed(2) : 0;
+  const ret = live ? ((dressed / live) * 100).toFixed(2) : 0;
   retWt.textContent = `${ret}%`;
 
   
