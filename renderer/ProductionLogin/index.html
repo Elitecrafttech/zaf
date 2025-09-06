@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <title>Sales Login</title>
+    <title>Production Login</title>
 </head>
 <body>
     <div class="all">
@@ -16,7 +16,7 @@
 </div>
 
         <img src="../asset/logo.png" alt="">
-        <a href="../Homedir/index.html"><h1>SALES LOGIN PAGE</h1></a>
+        <a href="../Homedir/index.html"><h1>PRODUCTION LOGIN PAGE</h1></a>
         <form id="loginForm">
             <div>
                 <h2>Email</h2>
@@ -66,7 +66,7 @@
             
 
             try {
-                const response = await fetch("https://zaf-farm.onrender.com/login-as-sales", {
+                const response = await fetch("https://zaf-farm.onrender.com/login-as-production", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -89,7 +89,7 @@
                     }).showToast();
 
                     setTimeout(() => {
-                        window.location.href = "../SalesVerificationdir/index.html";
+                        window.location.href = "../Product-Summarydir/index.html";
                     }, 2000);
                 } else {
                     loginButton.disabled = false;
