@@ -101,6 +101,14 @@ tbody tr:nth-child(even) {
   font-size: 1rem;
 }
 
+#category {
+  
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
 .summary-inputs span {
   font-weight: bold;
   font-size: 1.1rem;

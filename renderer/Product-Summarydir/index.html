@@ -32,7 +32,7 @@
       </div>
       <div>
         <label for="dressedWeight">Dressed Weight (KG):</label>
-        <input type="number" id="dressedWeight" />
+        <input type="number" id="dressedWeight" disabled value="0" />
       </div>
       <div>
         <label>RET WT %:</label>
@@ -47,9 +47,17 @@
     <!-- Production Entry Form -->
 <div class="summary-inputs">
   <div>
-    <label for="category">Category:</label>
-    <input type="text" id="category" placeholder="e.g., Goat meat" />
-  </div>
+  <label for="category">Category:</label>
+  <select id="category" name="category">
+    <option value="" disabled selected>Select a category</option>
+    <option value="4 PIECE CUT (LARGE)">4 PIECE CUT (LARGE)</option>
+    <option value="4 PIECE CUT (SMALL)">4 PIECE CUT (SMALL)</option>
+    <option value="10 PIECE CUT">10 PIECE CUT</option>
+    <option value="6 PIECE CUT">6 PIECE CUT</option>
+    <option value="8 PIECE CUT">8 PIECE CUT</option>
+    <option value="9 PIECE CUT">9 PIECE CUT</option>
+  </select>
+</div>
   <div>
     <label for="quantity">Quantity / PCS:</label>
     <input type="number" id="quantity" placeholder="e.g., 20" />
